@@ -1,0 +1,140 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Carte du restaurant KING FOOD",
+  "description": "Structure du fichier menu.json lu par la page de la carte. Remplacer ce fichier suffit à mettre la carte à jour ; le code QR reste le même.",
+  "type": "object",
+  "required": [
+    "salles"
+  ],
+  "properties": {
+    "version": {
+      "type": "integer",
+      "description": "Version du format (1)."
+    },
+    "miseAJour": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "description": "Date de la carte, AAAA-MM-JJ. Affichée en bas de page."
+    },
+    "restaurant": {
+      "type": "object",
+      "properties": {
+        "nom": {
+          "type": "string"
+        },
+        "sousTitre": {
+          "type": "string"
+        },
+        "adresse": {
+          "type": "string"
+        },
+        "telephone": {
+          "type": "string",
+          "description": "Format lisible, ex. +229 01 66 07 69 99"
+        },
+        "whatsapp": {
+          "type": "string",
+          "description": "Chiffres seuls, indicatif compris, ex. 2290166076999"
+        },
+        "email": {
+          "type": "string"
+        },
+        "horaires": {
+          "type": "string"
+        },
+        "maps": {
+          "type": "string",
+          "description": "Lien Google Maps pour le bouton Itinéraire"
+        },
+        "devise": {
+          "type": "string",
+          "description": "Suffixe affiché après le prix, ex. F"
+        },
+        "mention": {
+          "type": "string",
+          "description": "Mention légale en bas de carte, ex. « Prix en francs CFA, service compris »"
+        },
+        "telephones": {
+          "type": "string",
+          "description": "Tous les numéros affichés en pied de page, texte libre (ex. « Fidjrossè : … — Akpakpa : … »). « telephone » reste le numéro du bouton Appeler."
+        },
+        "reseaux": {
+          "type": "string",
+          "description": "Réseaux sociaux, texte libre affiché en pied de page."
+        }
+      }
+    },
+    "salles": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Une entrée par carte : Salle VIP, Terrasse… Une seule salle masque les onglets.",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "label",
+          "categories"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$"
+          },
+          "label": {
+            "type": "string"
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "label",
+                "items"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9-]+$"
+                },
+                "label": {
+                  "type": "string"
+                },
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "nom",
+                      "prix"
+                    ],
+                    "properties": {
+                      "numero": {
+                        "type": "string",
+                        "description": "Numéro du plat sur le menu, ex. « 45 » ou « 40-41 » (deux formats)."
+                      },
+                      "nom": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "prix": {
+                        "type": "string",
+                        "description": "Ex. « 3500 » ou « 5000 / 6500 » (deux formats). Vide si le plat n'a pas de prix."
+                      }
+                    }
+                  }
+                },
+                "note": {
+                  "type": "string",
+                  "description": "Texte affiché sous le titre de la catégorie (ex. « Prix : sandwich / assiette », liste des accompagnements)."
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

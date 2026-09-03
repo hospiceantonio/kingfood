@@ -1,0 +1,29 @@
+/* =========================================================
+   CHARTE GRAPHIQUE KING FOOD — le seul fichier à ajuster pour les
+   couleurs et les polices. La page carte, l'outil d'import et les
+   supports d'impression lisent tous ces variables.
+   Relevée sur le logo et le menu imprimé : jaune, noir, blanc,
+   rouge d'accent (descriptions, bandes), capitales très grasses.
+   Le logo se dépose dans ce dossier sous le nom logo.png.
+   ========================================================= */
+:root{
+  --kf-jaune:#FFC300;
+  --kf-noir:#111111;
+  --kf-rouge:#D0393D;
+  --kf-blanc:#FFFFFF;
+
+  --kf-primaire:var(--kf-jaune);        /* cartouches de catégories, onglet actif, liseré */
+  --kf-sur-primaire:var(--kf-noir);     /* texte posé sur le jaune */
+  --kf-accent:var(--kf-rouge);          /* descriptions des plats, mots en avant */
+  --kf-fond:var(--kf-blanc);            /* fond de page */
+  --kf-fond-doux:#FFF6D6;               /* pied de page, cartouches doux (jaune très pâle) */
+  --kf-texte:var(--kf-noir);
+  --kf-texte-doux:#555555;
+  --kf-entete-fond:var(--kf-blanc);     /* en-tête : blanc comme la couverture du menu */
+  --kf-entete-texte:var(--kf-noir);
+  --kf-barre-fond:var(--kf-noir);       /* barre d'actions en bas d'écran */
+  --kf-barre-texte:var(--kf-jaune);
+
+  --kf-police-titre:'Montserrat', 'Poppins', Arial, sans-serif;   /* capitales grasses du menu */
+  --kf-police-texte:'Montserrat', 'Poppins', Arial, sans-serif;
+}

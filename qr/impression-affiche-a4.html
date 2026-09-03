@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<title>Affiche A4 — QR menu KING FOOD</title>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="polices.css">
+<link rel="stylesheet" href="../identite.css">
+<style>
+@page{size:A4 portrait;margin:0}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#777}
+body{font-family:var(--kf-police-texte);color:var(--kf-texte);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.consigne{width:210mm;margin:6mm auto 0;color:#fff;font-size:11px;text-align:center}
+@media print{html,body{background:#fff}.consigne{display:none}}
+.tete{width:100%;background:var(--kf-entete-fond);color:var(--kf-entete-texte);display:flex;flex-direction:column;align-items:center;text-align:center}
+.tete .logo[hidden]{display:none}
+.kicker{font-family:var(--kf-police-titre);font-weight:900;text-transform:uppercase;letter-spacing:.14em;color:var(--kf-primaire)}
+.nom{font-family:var(--kf-police-titre);font-weight:900;text-transform:uppercase;letter-spacing:.06em;line-height:1.05}
+.bande{width:100%;background:var(--kf-primaire);color:var(--kf-sur-primaire);font-family:var(--kf-police-titre);font-weight:900;text-transform:uppercase;letter-spacing:.06em;text-align:center}
+.qr{background:#fff;border:.6mm solid var(--kf-noir);}
+.qr img{display:block}
+.rouge{color:var(--kf-accent);font-weight:700}
+.pied{width:100%;background:var(--kf-noir);color:#fff;text-align:center}
+.pied b{color:var(--kf-primaire);font-weight:800}
+
+.affiche{width:210mm;height:297mm;background:#fff;margin:8mm auto;display:flex;flex-direction:column;align-items:center;text-align:center;overflow:hidden;position:relative}
+@media print{.affiche{margin:0}}
+.tete{padding:11mm 10mm 7mm}
+.tete .logo{width:36mm;height:36mm;object-fit:contain;margin-bottom:2mm}
+.kicker{font-size:8mm}
+.nom{font-size:17mm}
+.sous{font-size:5.5mm;font-weight:700;margin-top:2mm}
+.bande{padding:4.5mm 10mm;font-size:7.5mm;margin-top:3mm}
+.qr{padding:4mm;margin-top:7mm;border-radius:5mm;border-width:1mm}
+.qr img{width:88mm;height:88mm}
+.rouge{font-size:4.8mm;margin-top:5.5mm;letter-spacing:.06em;text-transform:uppercase}
+.aide{font-size:4.2mm;color:var(--kf-texte);margin-top:3mm;font-weight:600}
+.aide small{display:block;font-weight:400;color:var(--kf-texte-doux);font-size:3.6mm;margin-top:1.5mm}
+.pied{margin-top:auto;padding:5mm 10mm 6mm;font-size:3.5mm;line-height:1.7}
+.pied .url{font-size:5mm}
+.pied .lieu{color:var(--kf-primaire);font-weight:700;margin-right:1mm}
+/* bandes rouges diagonales de la couverture du menu */
+.stripes{position:absolute;right:-30mm;bottom:22mm;width:120mm;height:20mm;transform:rotate(-20deg);background:repeating-linear-gradient(180deg,var(--kf-accent) 0 6mm,#fff 6mm 9mm,var(--kf-accent) 9mm 14mm,transparent 14mm 20mm);opacity:.95;pointer-events:none}
+</style>
+</head>
+<body>
+<p class="consigne">Affiche pour l'entrée, le comptoir ou la caisse. Imprimer en A4 à 100 %. Ctrl+P pour imprimer.</p>
+<div class="affiche">
+  <div class="tete">
+    <img class="logo" src="../logo.png" alt="" onerror="this.hidden=true">
+    <div class="kicker">Le menu</div>
+    <div class="nom">King Food</div>
+    <div class="sous">Vous êtes entre de bonnes mains</div>
+  </div>
+  <div class="bande">Scannez pour consulter le menu</div>
+  <div class="qr"><img src="qr-carte.svg" alt="Code QR du menu"></div>
+  <div class="rouge">Menu complet · Prix à jour · Sans application</div>
+  <div class="aide">Ouvrez l'appareil photo de votre téléphone et visez le code
+    <small>Le menu s'ouvre aussitôt, toujours à jour.</small></div>
+  <div class="pied"><b class="url">hospiceantonio.github.io/kingfood</b><br>
+    Ouvert tous les jours à partir de 10h · Service livraison disponible<br>
+    <span class="lieu">Fidjrossè</span> +229 01 96 96 96 93 · +229 01 51 54 54 15<br>
+    <span class="lieu">Akpakpa Sine Concorde</span> +229 01 59 88 99 88 · +229 01 40 95 95 19</div>
+</div>
+</body>
+</html>

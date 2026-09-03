@@ -1,0 +1,1569 @@
+{
+  "$schema": "./menu.schema.json",
+  "version": 1,
+  "miseAJour": "2026-09-03",
+  "restaurant": {
+    "nom": "KING FOOD",
+    "sousTitre": "Vous êtes entre de bonnes mains",
+    "adresse": "Cotonou — Fidjrossè · Akpakpa (Sine Concorde)",
+    "telephone": "+229 01 96 96 96 93",
+    "telephones": "Fidjrossè : +229 01 96 96 96 93 · +229 01 51 54 54 15 — Akpakpa : +229 01 59 88 99 88 · +229 01 40 95 95 19",
+    "horaires": "Ouvert tous les jours à partir de 10h",
+    "maps": "https://www.google.com/maps/search/?api=1&query=King+Food+Cotonou",
+    "reseaux": "Facebook · Instagram · TikTok : KING FOOD COTONOU",
+    "devise": "F",
+    "mention": "Service livraison disponible. Prix en francs CFA."
+  },
+  "salles": [
+    {
+      "id": "la-carte",
+      "label": "La carte",
+      "categories": [
+        {
+          "id": "entree-froide",
+          "label": "Entrée froide",
+          "items": [
+            {
+              "numero": "1",
+              "nom": "Salade verte simple",
+              "description": "laitue, concombre, tomate, oignon, œuf dur",
+              "prix": "3500"
+            },
+            {
+              "numero": "2",
+              "nom": "Fatouche",
+              "description": "laitue, concombre, tomate, oignon, carotte, menthe, citron, huile d'olive, pain grillé",
+              "prix": "4500"
+            },
+            {
+              "numero": "3",
+              "nom": "Salade Niçoise",
+              "description": "laitue, tomate, pomme de terre, anchois, thon, petits pois, concombre, olive noire, œuf dur",
+              "prix": "6000"
+            },
+            {
+              "numero": "4",
+              "nom": "Salade d'avocat aux crevettes",
+              "description": "laitue, avocat, crevettes, oignon, tomate, persil",
+              "prix": "6000"
+            },
+            {
+              "numero": "5",
+              "nom": "Salade Océane",
+              "description": "laitue, carotte, tomate, cœur de palmier, amande grillée, thon, crevette, avocat, oignon",
+              "prix": "6500"
+            },
+            {
+              "numero": "6",
+              "nom": "Salade King Food magnifique",
+              "description": "laitue, tomate, avocat, poulet grillé, maïs doux, poivron, oignon, pomme de terre, œuf dur, boulette de viande",
+              "prix": "7000"
+            },
+            {
+              "numero": "7",
+              "nom": "Suggestion du chef",
+              "description": "laitue, concombre, tomate, saucisson, œuf dur, poulet grillé, carotte, olive noire, oignon",
+              "prix": "6000"
+            },
+            {
+              "numero": "8",
+              "nom": "Salade Russe",
+              "description": "laitue, pomme de terre, betteraves, petits pois, oignon, concombre, spaghettis, mayonnaise, œufs, thon",
+              "prix": "6000"
+            },
+            {
+              "numero": "9",
+              "nom": "Salade Maison",
+              "description": "laitue, maïs doux, carotte, betterave, pomme de terre, œuf dur, poulet, tomate, oignon, vinaigrette à l'ail",
+              "prix": "5500"
+            }
+          ]
+        },
+        {
+          "id": "entree-chaude",
+          "label": "Entrée chaude",
+          "items": [
+            {
+              "numero": "10",
+              "nom": "Hors d'œuvre à chaud",
+              "description": "carotte, pomme de terre, petits pois, boulette de viande, poivron, crème d'oignon, choux",
+              "prix": "5500"
+            },
+            {
+              "numero": "11",
+              "nom": "Soupe de poisson",
+              "prix": "4000"
+            },
+            {
+              "numero": "12",
+              "nom": "Assiette de frites",
+              "description": "frites, salade de choux, moutarde, ketchup",
+              "prix": "3500"
+            },
+            {
+              "numero": "13",
+              "nom": "Assiette d'aloco",
+              "prix": "3000"
+            },
+            {
+              "numero": "14",
+              "nom": "Soupe de poulet aux vermicelles",
+              "prix": "4000"
+            },
+            {
+              "numero": "15",
+              "nom": "Méli-mélo au foie de volaille",
+              "description": "haricot vert, pomme de terre, foie de volaille, grenadine, oignon, céleri, poivron, coriandre fraîche",
+              "prix": "5000"
+            }
+          ]
+        },
+        {
+          "id": "sandwichs",
+          "label": "Sandwichs",
+          "items": [
+            {
+              "numero": "16",
+              "nom": "Fahita",
+              "description": "poulet, champignon, maïs doux, poivron, avocat, fromage, mayonnaise",
+              "prix": "3500"
+            },
+            {
+              "numero": "17",
+              "nom": "Panini Parisien",
+              "description": "avocat, poulet, maïs doux, laitue, tomate, fromage",
+              "prix": "4000"
+            },
+            {
+              "numero": "18",
+              "nom": "Crispy Poulet",
+              "description": "crispy, choux, crème d'ail, ketchup",
+              "prix": "3500"
+            },
+            {
+              "numero": "19",
+              "nom": "Steak Sub",
+              "description": "émincé de bœuf, oignon, champignon, poivron, mayonnaise",
+              "prix": "3500"
+            },
+            {
+              "numero": "20",
+              "nom": "Chicken Sub",
+              "description": "poulet, oignon, champignon, poivron, crème d'ail",
+              "prix": "4000"
+            },
+            {
+              "numero": "21",
+              "nom": "Sandwich au thon",
+              "prix": "2500"
+            }
+          ]
+        },
+        {
+          "id": "chawarmas",
+          "label": "Chawarmas",
+          "items": [
+            {
+              "numero": "22",
+              "nom": "Chawarma végétarien",
+              "description": "légumes, champignons, sauce, frites",
+              "prix": "2000"
+            },
+            {
+              "numero": "23",
+              "nom": "Chawarma frites",
+              "description": "choux, crème d'ail, frites, ketchup",
+              "prix": "2000"
+            },
+            {
+              "numero": "24",
+              "nom": "Chawarma kafta viande",
+              "description": "kafta viande, légumes, frites, sauce",
+              "prix": "2000"
+            },
+            {
+              "numero": "25",
+              "nom": "Chawarma kafta viande + fromage",
+              "prix": "2500"
+            },
+            {
+              "numero": "26",
+              "nom": "Chawarma double kafta viande",
+              "prix": "3500"
+            },
+            {
+              "numero": "27",
+              "nom": "Double kafta viande + fromage",
+              "prix": "4000"
+            },
+            {
+              "numero": "28",
+              "nom": "Chawarma viande steak",
+              "description": "viande steak, légumes, frites, sauce",
+              "prix": "2500"
+            },
+            {
+              "numero": "29",
+              "nom": "Chawarma viande libanais",
+              "description": "viande, persil, oignon, tomate, sauce tartare",
+              "prix": "2500"
+            },
+            {
+              "numero": "30",
+              "nom": "Chawarma viande steak + fromage",
+              "prix": "3000"
+            },
+            {
+              "numero": "31",
+              "nom": "Chawarma taouk poisson",
+              "description": "taouk, frites, crème d'ail, cornichon",
+              "prix": "3500"
+            },
+            {
+              "numero": "32",
+              "nom": "Chawarma taouk poulet",
+              "description": "taouk, frites, choux, crème d'ail, cornichon",
+              "prix": "3500"
+            },
+            {
+              "numero": "33",
+              "nom": "Chawarma poulet",
+              "prix": "3000"
+            },
+            {
+              "numero": "34",
+              "nom": "Chawarma poulet + fromage",
+              "description": "poulet grillé, crème d'ail, choux, oignon, tomate, frites, sauce",
+              "prix": "3500"
+            },
+            {
+              "numero": "35",
+              "nom": "Chawarma kafta poulet",
+              "description": "kafta poulet, crème d'ail, choux, oignon, tomate, frites, sauce",
+              "prix": "2500"
+            },
+            {
+              "numero": "36",
+              "nom": "Chawarma double kafta poulet",
+              "prix": "3500"
+            },
+            {
+              "numero": "37",
+              "nom": "Chawarma kafta poulet + fromage",
+              "prix": "3000"
+            },
+            {
+              "numero": "38",
+              "nom": "Double kafta poulet + fromage",
+              "prix": "4000"
+            },
+            {
+              "numero": "39",
+              "nom": "Chawarma suggestion du chef",
+              "description": "poulet grillé, viande steak, frites, fromage",
+              "prix": "5000"
+            }
+          ]
+        },
+        {
+          "id": "burgers",
+          "label": "Burgers",
+          "note": "Prix : sandwich / assiette",
+          "items": [
+            {
+              "numero": "40-41",
+              "nom": "Burger végétarien",
+              "prix": "2500 / 3500"
+            },
+            {
+              "numero": "42-43",
+              "nom": "Hamburger viande",
+              "prix": "3500 / 4500"
+            },
+            {
+              "numero": "44-45",
+              "nom": "Chicken Burger",
+              "prix": "4000 / 5000"
+            },
+            {
+              "numero": "46-47",
+              "nom": "Cheese Burger",
+              "prix": "4000 / 5000"
+            },
+            {
+              "numero": "48-49",
+              "nom": "Cheese chicken Burger",
+              "prix": "4500 / 4500"
+            },
+            {
+              "numero": "50-51",
+              "nom": "Double Burger",
+              "prix": "4000 / 4500"
+            },
+            {
+              "numero": "52-53",
+              "nom": "Double chicken Burger",
+              "prix": "4500 / 5500"
+            },
+            {
+              "numero": "54-55",
+              "nom": "Double cheese Burger",
+              "prix": "4500 / 5500"
+            },
+            {
+              "numero": "56-57",
+              "nom": "Double chicken cheese Burger",
+              "prix": "4500 / 5500"
+            },
+            {
+              "numero": "58-59",
+              "nom": "Crispy Burger BBQ",
+              "prix": "4000 / 5000"
+            },
+            {
+              "numero": "60-61",
+              "nom": "Fish Burger",
+              "prix": "4000 / 5000"
+            },
+            {
+              "numero": "62-63",
+              "nom": "Chilli cheese Burger",
+              "prix": "3500 / 4500"
+            },
+            {
+              "numero": "64-65",
+              "nom": "Burger King Food",
+              "description": "jambon, viande, fromage, oignon, frites, sauce burger",
+              "prix": "5000 / 6000"
+            },
+            {
+              "numero": "66-67",
+              "nom": "Hawaï Burger",
+              "description": "ananas, tomate, oignon, aubergine, basilic, frites, ketchup",
+              "prix": "3000 / 4000"
+            },
+            {
+              "numero": "68-69",
+              "nom": "American Burger BBQ",
+              "description": "mouton, champignon, fromage, cornichon, moutarde, sauce soja",
+              "prix": "5000 / 6000"
+            },
+            {
+              "numero": "70",
+              "nom": "Club Sandwich",
+              "prix": "6000"
+            }
+          ]
+        },
+        {
+          "id": "omelettes",
+          "label": "Omelettes",
+          "items": [
+            {
+              "numero": "71",
+              "nom": "Œufs au plat",
+              "prix": "1000"
+            },
+            {
+              "numero": "72",
+              "nom": "Omelette nature",
+              "prix": "1500"
+            },
+            {
+              "numero": "73",
+              "nom": "Omelette italienne",
+              "description": "légumes, champignons",
+              "prix": "2500"
+            },
+            {
+              "numero": "74",
+              "nom": "Omelette jambon-fromage",
+              "prix": "3000"
+            },
+            {
+              "numero": "75",
+              "nom": "Suggestion du chef omelette",
+              "description": "fromage, jambon, poulet, oignon, tomate, poivron",
+              "prix": "4000"
+            }
+          ]
+        },
+        {
+          "id": "pizza",
+          "label": "Pizza",
+          "note": "Prix : petite / grande",
+          "items": [
+            {
+              "numero": "80-81",
+              "nom": "Pizza Marguerita",
+              "description": "tomates, fromages, origan, olive",
+              "prix": "5000 / 6500"
+            },
+            {
+              "numero": "82-83",
+              "nom": "Pizza Toscane",
+              "description": "tomates, fromages, jambon, olive noire",
+              "prix": "5500 / 7000"
+            },
+            {
+              "numero": "84-85",
+              "nom": "Pizza Reine",
+              "description": "tomates, fromages, champignon, jambon",
+              "prix": "6000 / 7500"
+            },
+            {
+              "numero": "86-87",
+              "nom": "Pizza Chicken",
+              "description": "tomates, poulet, oignon, poivron, olive",
+              "prix": "6500 / 8000"
+            },
+            {
+              "numero": "88-89",
+              "nom": "Pizza fruits de mer",
+              "description": "crème, crevette, poisson, poivron, olive",
+              "prix": "8000 / 10000"
+            },
+            {
+              "numero": "90-91",
+              "nom": "Flipper",
+              "description": "jambon, fromages, anchois, champignons, tomate, olive",
+              "prix": "5500 / 7000"
+            },
+            {
+              "numero": "92-93",
+              "nom": "Pizza Pêcheur",
+              "description": "fromages, tomate, thon, olive, crevette",
+              "prix": "6500 / 8000"
+            },
+            {
+              "numero": "94-95",
+              "nom": "Pizza Mexicaine",
+              "description": "fromages, tomate, viande hachée, poivron, maïs doux",
+              "prix": "6000 / 7500"
+            },
+            {
+              "numero": "96-97",
+              "nom": "Pizza Végétarienne",
+              "description": "tomates, fromage, champignon, maïs doux, oignon, aubergine",
+              "prix": "6000 / 7000"
+            },
+            {
+              "numero": "98-99",
+              "nom": "Pizza Italienne",
+              "description": "tomates, œuf, oignon, origan, basilic, poivron, fromage, tomates fraîches",
+              "prix": "6000 / 7000"
+            },
+            {
+              "numero": "100-101",
+              "nom": "Pizza 4 Saisons",
+              "description": "tomates, jambon, fromage, champignon, artichaut, olive",
+              "prix": "6500 / 8000"
+            },
+            {
+              "numero": "102-103",
+              "nom": "4 Fromages",
+              "description": "tomate, gruyère, mozzarella, cheddar, roquefort",
+              "prix": "6000 / 6500"
+            },
+            {
+              "numero": "104-105",
+              "nom": "Pizza Calzone",
+              "description": "tomates, fromage, œuf, champignon, olive, jambon",
+              "prix": "6000 / 7000"
+            },
+            {
+              "numero": "106-107",
+              "nom": "Suggestion du chef",
+              "description": "crème, mouton haché, maïs doux, olive, fromage",
+              "prix": "6500 / 8000"
+            },
+            {
+              "numero": "108-109",
+              "nom": "Pizza Mixte",
+              "description": "au choix du client",
+              "prix": "6000 / 7000"
+            },
+            {
+              "numero": "110-111",
+              "nom": "Pizza Love",
+              "description": "crème, saucisse, maïs doux, champignons, oignon, poivron, fromages",
+              "prix": "6500 / 8000"
+            },
+            {
+              "numero": "112-113",
+              "nom": "Pizza Crevette",
+              "description": "tomate, fromage, crevette, olive noire",
+              "prix": "6500 / 7500"
+            },
+            {
+              "numero": "114-115",
+              "nom": "Pizza Demi-Saison",
+              "description": "deux moitiés au choix",
+              "prix": "6000 / 7000"
+            },
+            {
+              "numero": "116-117",
+              "nom": "Pizza Surprise",
+              "prix": "6000 / 7000"
+            },
+            {
+              "numero": "118-119",
+              "nom": "Pizza King Food",
+              "description": "crème, poulet, champignon, maïs doux, oignon, poivron",
+              "prix": "7500 / 8500"
+            },
+            {
+              "numero": "120-121",
+              "nom": "Pizza du Roi",
+              "description": "tomate, piment, poulet, jambon, mozzarella",
+              "prix": "7500 / 8500"
+            }
+          ]
+        },
+        {
+          "id": "menu-enfant",
+          "label": "Menu enfant",
+          "items": [
+            {
+              "numero": "76",
+              "nom": "Spaghetti bolo + 1 Coca",
+              "prix": "4500"
+            },
+            {
+              "numero": "77",
+              "nom": "Quart de poulet chair + frites + 1 Coca",
+              "prix": "4500"
+            },
+            {
+              "numero": "78",
+              "nom": "Mini pizza (x2) + 1 boule de glace",
+              "prix": "2500"
+            },
+            {
+              "numero": "79",
+              "nom": "Mini chawarma viande + 1 Coca",
+              "prix": "2500"
+            }
+          ]
+        },
+        {
+          "id": "nos-grillades",
+          "label": "Nos grillades",
+          "items": [
+            {
+              "numero": "122",
+              "nom": "Poulet bicyclette grillé BBQ",
+              "prix": "6500"
+            },
+            {
+              "numero": "123",
+              "nom": "Ailerons de dinde braisés BBQ",
+              "prix": "6500"
+            },
+            {
+              "numero": "124",
+              "nom": "Choukouya poulet",
+              "prix": "6500"
+            },
+            {
+              "numero": "125",
+              "nom": "Choukouya bœuf",
+              "prix": "6000"
+            },
+            {
+              "numero": "126",
+              "nom": "Choukouya mouton",
+              "prix": "6500"
+            },
+            {
+              "numero": "127",
+              "nom": "Pintade braisée BBQ",
+              "prix": "6500"
+            },
+            {
+              "numero": "128",
+              "nom": "Poisson entier grillé (500 g)",
+              "description": "bar, carpe rouge, carpe grise, dorade, tilapia, sole",
+              "prix": "8500"
+            },
+            {
+              "numero": "129",
+              "nom": "Mouton braisé BBQ",
+              "prix": "6000"
+            },
+            {
+              "numero": "130",
+              "nom": "Langue de bœuf grillée BBQ",
+              "prix": "6000"
+            }
+          ]
+        },
+        {
+          "id": "poisson-d-eaux-douces-et-fruits-de-mer",
+          "label": "Poisson d'eaux douces et fruits de mer",
+          "items": [
+            {
+              "numero": "131",
+              "nom": "Filet de poisson pané",
+              "prix": "6500"
+            },
+            {
+              "numero": "132",
+              "nom": "Crevette sauce provinciale",
+              "prix": "6500"
+            },
+            {
+              "numero": "133",
+              "nom": "Capitaine grillé nature",
+              "prix": "6500"
+            },
+            {
+              "numero": "134",
+              "nom": "Mérou sauce forestière",
+              "prix": "6500"
+            },
+            {
+              "numero": "135",
+              "nom": "Crevette sautée à l'ail",
+              "prix": "6500"
+            }
+          ]
+        },
+        {
+          "id": "viandes-blanches",
+          "label": "Viandes blanches",
+          "items": [
+            {
+              "numero": "136",
+              "nom": "Strogonof poulet",
+              "description": "crème fraîche, piment, paprika, poulet, poivron",
+              "prix": "6500"
+            },
+            {
+              "numero": "137",
+              "nom": "Demi-poulet chair braisé BBQ",
+              "prix": "6500"
+            },
+            {
+              "numero": "138",
+              "nom": "Demi-poulet KFC",
+              "prix": "6500"
+            },
+            {
+              "numero": "139",
+              "nom": "Poulet entier chair grillé au four",
+              "prix": "11000"
+            },
+            {
+              "numero": "140",
+              "nom": "Bomiwo au poulet",
+              "prix": "6500"
+            },
+            {
+              "numero": "141",
+              "nom": "Poulet à l'ail",
+              "prix": "6500"
+            },
+            {
+              "numero": "142",
+              "nom": "Escalope de poulet pané",
+              "prix": "6000"
+            },
+            {
+              "numero": "143",
+              "nom": "Assiette crispy",
+              "prix": "6000"
+            },
+            {
+              "numero": "144",
+              "nom": "Poulet piquant",
+              "prix": "6500"
+            },
+            {
+              "numero": "145",
+              "nom": "Escalope de poulet sauce forestière",
+              "prix": "6000"
+            },
+            {
+              "numero": "146",
+              "nom": "Assiette chawarma poulet",
+              "prix": "6500"
+            }
+          ]
+        },
+        {
+          "id": "viandes-rouges",
+          "label": "Viandes rouges",
+          "items": [
+            {
+              "numero": "147",
+              "nom": "Assiette chawarma viande",
+              "prix": "6000"
+            },
+            {
+              "numero": "148",
+              "nom": "Bœuf strogonof",
+              "prix": "6000"
+            },
+            {
+              "numero": "149",
+              "nom": "Filet de bœuf sauce Roquefort",
+              "prix": "6500"
+            },
+            {
+              "numero": "150",
+              "nom": "Steak grillé BMH",
+              "prix": "6500"
+            },
+            {
+              "numero": "151",
+              "nom": "Steak grillé nature",
+              "prix": "6000"
+            },
+            {
+              "numero": "152",
+              "nom": "Mouton sauté aux légumes",
+              "prix": "6500"
+            },
+            {
+              "numero": "153",
+              "nom": "Langue de bœuf sautée à l'ail",
+              "prix": "6000"
+            },
+            {
+              "numero": "154",
+              "nom": "Langue de bœuf sauce crème champignon",
+              "prix": "6000"
+            }
+          ]
+        },
+        {
+          "id": "nos-brochettes",
+          "label": "Nos brochettes",
+          "items": [
+            {
+              "numero": "155",
+              "nom": "Brochette de bœuf",
+              "prix": "6000"
+            },
+            {
+              "numero": "156",
+              "nom": "Brochette de gésier de dinde",
+              "prix": "5500"
+            },
+            {
+              "numero": "157",
+              "nom": "Brochette taouk poisson",
+              "prix": "7000"
+            },
+            {
+              "numero": "158",
+              "nom": "Brochette taouk poulet",
+              "prix": "7000"
+            },
+            {
+              "numero": "159",
+              "nom": "Mixed Grill",
+              "description": "viande, poulet, poisson, légumes",
+              "prix": "8000"
+            }
+          ]
+        },
+        {
+          "id": "sauces-gluantes",
+          "label": "Sauces gluantes",
+          "items": [
+            {
+              "numero": "160",
+              "nom": "Pomme sauvage (Assrokouin)",
+              "description": "poisson fumé, mouton, crabe, fromage, peau de bœuf",
+              "prix": "6000"
+            },
+            {
+              "numero": "161",
+              "nom": "Crincrin (Nin nou wi)",
+              "description": "poisson fumé, mouton, crabe, fromage, crevette, peau de bœuf",
+              "prix": "6000"
+            },
+            {
+              "numero": "162",
+              "nom": "Gombo royal (Févi n'ssounou Tchigan)",
+              "description": "poisson fumé, mouton, crabe, fromage, crevette, peau de bœuf",
+              "prix": "6000"
+            }
+          ]
+        },
+        {
+          "id": "sauces-liquides",
+          "label": "Sauces liquides",
+          "items": [
+            {
+              "numero": "163",
+              "nom": "Sauce aux poissons frais (500 g)",
+              "prix": "8000"
+            },
+            {
+              "numero": "164",
+              "nom": "Sauce boyaux (mouton)",
+              "prix": "6000"
+            },
+            {
+              "numero": "165",
+              "nom": "Sauce mouton aux fromages",
+              "prix": "6000"
+            },
+            {
+              "numero": "166",
+              "nom": "Sauce d'arachide (Azin n'ssounou)",
+              "description": "mouton, fromage",
+              "prix": "6000"
+            },
+            {
+              "numero": "167",
+              "nom": "Sauce graine (De n'ssounou)",
+              "description": "mouton, fromage",
+              "prix": "6000"
+            },
+            {
+              "numero": "168",
+              "nom": "Sauce égoussi",
+              "description": "mouton, fromage",
+              "prix": "6000"
+            },
+            {
+              "numero": "169",
+              "nom": "Dakouin (poisson 300 g)",
+              "prix": "6000"
+            },
+            {
+              "numero": "170",
+              "nom": "Dakouin (poisson 500 g)",
+              "prix": "8500"
+            },
+            {
+              "numero": "171",
+              "nom": "Monyo aux poissons (300 g)",
+              "prix": "6000"
+            },
+            {
+              "numero": "172",
+              "nom": "Monyo aux poissons (500 g)",
+              "prix": "8000"
+            },
+            {
+              "numero": "173",
+              "nom": "Blôcotô",
+              "prix": "8000"
+            },
+            {
+              "numero": "174",
+              "nom": "Gbôta complet",
+              "prix": "8000"
+            },
+            {
+              "numero": "175",
+              "nom": "Couscous royal",
+              "description": "mouton, légumes",
+              "prix": "8000"
+            }
+          ]
+        },
+        {
+          "id": "plats-africains",
+          "label": "Plats africains",
+          "note": "Kédjénou : à l'origine un plat typique et mythique du centre de la Côte d'Ivoire, un vrai régal à base de petits légumes.",
+          "items": [
+            {
+              "numero": "176",
+              "nom": "Sauce légume",
+              "description": "gboma, tchiayo, amanvivé mixte",
+              "prix": "6500"
+            },
+            {
+              "numero": "177",
+              "nom": "Kédjénou poulet",
+              "prix": "6500"
+            },
+            {
+              "numero": "178",
+              "nom": "Kédjénou pintade",
+              "prix": "6500"
+            },
+            {
+              "numero": "179",
+              "nom": "Kédjénou poisson",
+              "prix": "8500"
+            },
+            {
+              "numero": "180",
+              "nom": "Tchiep djen",
+              "description": "poisson, sauce tomate et légumes — le célèbre plat sénégalais, cuisiné pour la première fois en 1830 à Saint-Louis",
+              "prix": "5500"
+            },
+            {
+              "numero": "181",
+              "nom": "N'Dolé",
+              "description": "poisson fumé, mouton, fromage, crabe, peau de bœuf — plat d'origine camerounaise, région de Douala",
+              "prix": "5500"
+            }
+          ]
+        },
+        {
+          "id": "suggestion-du-chef",
+          "label": "Suggestion du chef",
+          "items": [
+            {
+              "numero": "182",
+              "nom": "Ragoût d'igname ou patate au bœuf",
+              "prix": "6000"
+            },
+            {
+              "numero": "183",
+              "nom": "Mangnignan do kamin",
+              "description": "afintin, poisson fumé, fromage",
+              "prix": "6000"
+            },
+            {
+              "numero": "184",
+              "nom": "Œufs brouillés + igname bouillie",
+              "prix": "5000"
+            },
+            {
+              "numero": "185",
+              "nom": "Friture de mouton (huile rouge) + crincrin + pâte noire",
+              "prix": "7000"
+            },
+            {
+              "numero": "186",
+              "nom": "Foie de volaille sauté à l'ancienne",
+              "prix": "6000"
+            }
+          ]
+        },
+        {
+          "id": "pates",
+          "label": "Pâtes",
+          "items": [
+            {
+              "numero": "187",
+              "nom": "Spaghetti bolognaise",
+              "description": "sauce tomate, viande hachée",
+              "prix": "6500"
+            },
+            {
+              "numero": "188",
+              "nom": "Spaghetti arrabiata",
+              "prix": "5500"
+            },
+            {
+              "numero": "189",
+              "nom": "Spaghetti carbonara",
+              "description": "spaghetti, jambon, crème fraîche, œuf",
+              "prix": "6000"
+            },
+            {
+              "numero": "190",
+              "nom": "Spaghetti aux boulettes de viande",
+              "description": "boulettes de viande, sauce tomate à la crème",
+              "prix": "6000"
+            },
+            {
+              "numero": "191",
+              "nom": "Spaghetti sauté au bœuf et légumes",
+              "prix": "5500"
+            },
+            {
+              "numero": "192",
+              "nom": "Spaghetti Napetala + omelette",
+              "description": "sauce tomate + œuf",
+              "prix": "6000"
+            },
+            {
+              "numero": "193",
+              "nom": "Spaghetti Napetala avec sardine",
+              "description": "sauce tomate, sardine",
+              "prix": "6500"
+            }
+          ]
+        },
+        {
+          "id": "nos-accompagnements",
+          "label": "Nos accompagnements",
+          "note": "Riz, pâte blanche, pâte noire, couscous, spaghetti, frites, aloco, akassa, agbéli, attiéké, pomme sautée, pomme vapeur, légumes sautés, purée de pomme.",
+          "items": []
+        },
+        {
+          "id": "crepes",
+          "label": "Crêpes",
+          "items": [
+            {
+              "numero": "194",
+              "nom": "Crêpe nature",
+              "prix": "2000"
+            },
+            {
+              "numero": "195",
+              "nom": "Crêpe au sucre",
+              "prix": "2000"
+            },
+            {
+              "numero": "196",
+              "nom": "Crêpe au chocolat",
+              "prix": "2500"
+            },
+            {
+              "numero": "197",
+              "nom": "Crêpe au chocolat et à la banane",
+              "prix": "3000"
+            },
+            {
+              "numero": "198",
+              "nom": "Crêpe salée",
+              "prix": "2000"
+            },
+            {
+              "numero": "199",
+              "nom": "Crêpe jambon fromage",
+              "prix": "3500"
+            }
+          ]
+        },
+        {
+          "id": "gateaux",
+          "label": "Gâteaux",
+          "items": [
+            {
+              "numero": "200",
+              "nom": "Part de gâteau (petite)",
+              "prix": "1000"
+            },
+            {
+              "numero": "201",
+              "nom": "Part de gâteau (grande)",
+              "prix": "2000"
+            }
+          ]
+        },
+        {
+          "id": "gaufres",
+          "label": "Gaufres",
+          "items": [
+            {
+              "numero": "202",
+              "nom": "Gaufre au sucre",
+              "prix": "2500"
+            },
+            {
+              "numero": "203",
+              "nom": "Gaufre au chocolat",
+              "prix": "3000"
+            },
+            {
+              "numero": "204",
+              "nom": "Gaufre au chocolat à la banane",
+              "prix": "3500"
+            },
+            {
+              "numero": "205",
+              "nom": "Gaufre au miel",
+              "prix": "3000"
+            },
+            {
+              "numero": "206",
+              "nom": "Gaufre à la confiture",
+              "prix": "3000"
+            }
+          ]
+        },
+        {
+          "id": "cocktails",
+          "label": "Cocktails",
+          "items": [
+            {
+              "numero": "207",
+              "nom": "Diablo",
+              "description": "pêche, grenadine ou menthe",
+              "prix": "2000"
+            },
+            {
+              "numero": "208",
+              "nom": "Tonino",
+              "description": "ananas, mangue, citron, sirop de pêche, fraise",
+              "prix": "3000"
+            },
+            {
+              "numero": "209",
+              "nom": "Virgin Mojito",
+              "description": "feuilles de menthe, citron vert, sucre de canne, Perrier",
+              "prix": "3500"
+            },
+            {
+              "numero": "210",
+              "nom": "Parisette",
+              "description": "lait entier, sirop de menthe ou grenadine",
+              "prix": "2500"
+            },
+            {
+              "numero": "211",
+              "nom": "Mojito Pomme",
+              "description": "feuilles de menthe, citron vert, sucre de canne, jus de pomme",
+              "prix": "2500"
+            },
+            {
+              "numero": "212",
+              "nom": "King Food Exotique",
+              "description": "goyave, ananas, sirop de gingembre, jus d'orange, feuilles de menthe, sirop de grenadine",
+              "prix": "5000"
+            },
+            {
+              "numero": "213",
+              "nom": "L'unique Virgin",
+              "description": "ananas, passion, sirop de grenadine",
+              "prix": "2500"
+            },
+            {
+              "numero": "214",
+              "nom": "Chantaco Passion",
+              "description": "orange, ananas, passion, grenadine",
+              "prix": "2500"
+            },
+            {
+              "numero": "215",
+              "nom": "Arc-en-ciel",
+              "description": "ananas, mangue, pastèque, sirop de menthe",
+              "prix": "3500"
+            },
+            {
+              "numero": "216",
+              "nom": "Bora Bora",
+              "description": "jus d'ananas, fruit de la passion, jus de citron, sirop de grenadine",
+              "prix": "2500"
+            },
+            {
+              "numero": "217",
+              "nom": "Virgin Mojito Passion",
+              "description": "menthe, citron, fruit de la passion, sucre de canne, eau gazeuse",
+              "prix": "2500"
+            },
+            {
+              "numero": "218",
+              "nom": "Monaco",
+              "description": "bière sans alcool, sirop de grenadine, Sprite",
+              "prix": "3000"
+            },
+            {
+              "numero": "219",
+              "nom": "Cendrillon Passion",
+              "description": "citron, orange, ananas, fruit de la passion",
+              "prix": "3000"
+            },
+            {
+              "numero": "220",
+              "nom": "Pink Banana",
+              "description": "sauce de banane, orange, sirop de grenadine, banane",
+              "prix": "3500"
+            },
+            {
+              "numero": "221",
+              "nom": "Valse",
+              "description": "bière sans alcool, sirop de menthe, 7up",
+              "prix": "2500"
+            },
+            {
+              "numero": "222",
+              "nom": "Cendrillon",
+              "description": "jus de citron, jus d'orange, jus d'ananas, trait de grenadine",
+              "prix": "3000"
+            },
+            {
+              "numero": "223",
+              "nom": "Milky Mango",
+              "description": "sauce de mangue, lait entier, framboise",
+              "prix": "2500"
+            },
+            {
+              "numero": "224",
+              "nom": "Hey Baby",
+              "description": "ananas, passion, citron, vanille",
+              "prix": "3000"
+            },
+            {
+              "numero": "225",
+              "nom": "Laluna",
+              "description": "ananas, orange, citron",
+              "prix": "1500"
+            },
+            {
+              "numero": "226",
+              "nom": "Green or Red Moon",
+              "description": "ananas, orange, lait de coco",
+              "prix": "2500"
+            },
+            {
+              "numero": "227",
+              "nom": "Malgache",
+              "description": "bissap, ananas, citron, sirop de menthe",
+              "prix": "3000"
+            },
+            {
+              "numero": "228",
+              "nom": "Chantaco",
+              "description": "jus d'orange, citron, sirop de fraise, jus de pamplemousse",
+              "prix": "2500"
+            },
+            {
+              "numero": "229",
+              "nom": "Smooth Bananas",
+              "description": "ananas, miel, lait, vanille",
+              "prix": "2500"
+            },
+            {
+              "numero": "230",
+              "nom": "Papaye ou t'es",
+              "description": "papaye, fruits rouges, mangue",
+              "prix": "3000"
+            },
+            {
+              "numero": "231",
+              "nom": "Kid dit wi",
+              "description": "kiwi, ananas, miel, citron",
+              "prix": "3500"
+            },
+            {
+              "numero": "232",
+              "nom": "Passion Aimant",
+              "description": "passion, ananas, orange, miel",
+              "prix": "3000"
+            },
+            {
+              "numero": "233",
+              "nom": "Pina Hoolala",
+              "description": "ananas, bananes, lait, citron vert",
+              "prix": "3000"
+            },
+            {
+              "numero": "234",
+              "nom": "Mangua Gogo",
+              "description": "mangue, lait, citron vert",
+              "prix": "2500"
+            },
+            {
+              "numero": "235",
+              "nom": "Citron vert",
+              "description": "citron, gingembre, miel",
+              "prix": "2000"
+            },
+            {
+              "numero": "236",
+              "nom": "Milkshake banane",
+              "description": "vanille, banane",
+              "prix": "2000"
+            }
+          ]
+        },
+        {
+          "id": "jus-nature",
+          "label": "Jus nature",
+          "items": [
+            {
+              "numero": "237",
+              "nom": "Ananas",
+              "prix": "1500"
+            },
+            {
+              "numero": "238",
+              "nom": "Orange",
+              "prix": "1500"
+            },
+            {
+              "numero": "239",
+              "nom": "Pastèque",
+              "prix": "2000"
+            },
+            {
+              "numero": "240",
+              "nom": "Banane",
+              "prix": "2000"
+            },
+            {
+              "numero": "241",
+              "nom": "Gingembre",
+              "prix": "2000"
+            },
+            {
+              "numero": "242",
+              "nom": "Pomme",
+              "prix": "2000"
+            },
+            {
+              "numero": "243",
+              "nom": "Papaye",
+              "prix": "2000"
+            }
+          ]
+        },
+        {
+          "id": "jus-mixte",
+          "label": "Jus mixte",
+          "items": [
+            {
+              "numero": "244",
+              "nom": "Assiette de fruits",
+              "prix": "5000"
+            },
+            {
+              "numero": "245",
+              "nom": "Assiette de raisin",
+              "prix": "3000"
+            },
+            {
+              "numero": "246",
+              "nom": "Jus d'avocat",
+              "prix": "2500"
+            },
+            {
+              "numero": "247",
+              "nom": "Jus de bissap",
+              "prix": "1500"
+            },
+            {
+              "numero": "248",
+              "nom": "Limonade",
+              "prix": "1000"
+            },
+            {
+              "numero": "249",
+              "nom": "Eau gazeuse (petite)",
+              "prix": "1000"
+            },
+            {
+              "numero": "250",
+              "nom": "Eau gazeuse (grande)",
+              "prix": "1500"
+            }
+          ]
+        },
+        {
+          "id": "boissons",
+          "label": "Boissons",
+          "items": [
+            {
+              "numero": "251",
+              "nom": "Coca-Cola",
+              "prix": "1000"
+            },
+            {
+              "numero": "252",
+              "nom": "Coca bouteille en verre (petite)",
+              "prix": "1500"
+            },
+            {
+              "numero": "253",
+              "nom": "Coca bouteille en verre (grande)",
+              "prix": "2000"
+            },
+            {
+              "numero": "254",
+              "nom": "Coca Light / Zero",
+              "prix": "1500"
+            },
+            {
+              "numero": "255",
+              "nom": "Youki",
+              "description": "cocktail, pamplemousse",
+              "prix": "1000"
+            },
+            {
+              "numero": "256",
+              "nom": "Pepsi",
+              "prix": "1000"
+            },
+            {
+              "numero": "257",
+              "nom": "Pepsi Light",
+              "prix": "2000"
+            },
+            {
+              "numero": "258",
+              "nom": "Perrier",
+              "prix": "1500"
+            },
+            {
+              "numero": "259",
+              "nom": "Bière sans alcool",
+              "prix": "1500"
+            },
+            {
+              "numero": "260",
+              "nom": "Fanta",
+              "description": "orange, citron",
+              "prix": "1000"
+            },
+            {
+              "numero": "261-262",
+              "nom": "Sprite",
+              "description": "petite / grande",
+              "prix": "1000 / 1500"
+            },
+            {
+              "numero": "263",
+              "nom": "Malta",
+              "prix": "1000"
+            },
+            {
+              "numero": "264",
+              "nom": "XXL",
+              "prix": "1000"
+            },
+            {
+              "numero": "265",
+              "nom": "Flash Énergie",
+              "prix": "1000"
+            },
+            {
+              "numero": "266",
+              "nom": "Jus Extra",
+              "prix": "1000"
+            },
+            {
+              "numero": "267-268",
+              "nom": "Frisco",
+              "description": "petite / grande",
+              "prix": "500 / 1000"
+            },
+            {
+              "numero": "269",
+              "nom": "Eau (0,5 L)",
+              "prix": "500"
+            },
+            {
+              "numero": "270",
+              "nom": "Eau (1,5 L)",
+              "prix": "1000"
+            },
+            {
+              "numero": "271",
+              "nom": "Yaourt maison (petit)",
+              "prix": "1000"
+            },
+            {
+              "numero": "272",
+              "nom": "Yaourt maison (grand)",
+              "prix": "1500"
+            },
+            {
+              "numero": "273",
+              "nom": "Yaourt maison (1,5 L)",
+              "prix": "3500"
+            }
+          ]
+        },
+        {
+          "id": "glaces",
+          "label": "Glaces",
+          "items": [
+            {
+              "numero": "274",
+              "nom": "Boule de glace (bol)",
+              "prix": "1000"
+            },
+            {
+              "numero": "275",
+              "nom": "Boule de glace (cornet)",
+              "prix": "1200"
+            },
+            {
+              "numero": "276",
+              "nom": "Milkshake",
+              "description": "parfum au choix",
+              "prix": "3500"
+            },
+            {
+              "numero": "277",
+              "nom": "Dame Blanche",
+              "prix": "4000"
+            },
+            {
+              "numero": "278",
+              "nom": "Dame Noire",
+              "prix": "4000"
+            },
+            {
+              "numero": "279",
+              "nom": "Chocolat frappé",
+              "prix": "2000"
+            },
+            {
+              "numero": "280",
+              "nom": "Boules de glace (6)",
+              "prix": "5000"
+            },
+            {
+              "numero": "281",
+              "nom": "Boules de glace (10)",
+              "prix": "8000"
+            }
+          ]
+        },
+        {
+          "id": "boissons-chaudes",
+          "label": "Boissons chaudes",
+          "items": [
+            {
+              "numero": "282",
+              "nom": "Café libanais",
+              "prix": "1000"
+            },
+            {
+              "numero": "283",
+              "nom": "Thé infusion menthe Lipton",
+              "prix": "1500"
+            },
+            {
+              "numero": "284",
+              "nom": "Lait chaud",
+              "prix": "1500"
+            },
+            {
+              "numero": "285",
+              "nom": "Chocolat chaud",
+              "prix": "2000"
+            },
+            {
+              "numero": "286",
+              "nom": "Citronnelle",
+              "prix": "1500"
+            },
+            {
+              "numero": "287",
+              "nom": "Thé Mojito",
+              "prix": "2500"
+            }
+          ]
+        },
+        {
+          "id": "chicha",
+          "label": "Chicha",
+          "items": [
+            {
+              "numero": "288",
+              "nom": "Chicha",
+              "description": "menthe, pomme, menthe-citron, love",
+              "prix": "4000"
+            },
+            {
+              "numero": "289",
+              "nom": "Chicha spécial",
+              "prix": "6000"
+            },
+            {
+              "numero": "290",
+              "nom": "Changement de tête",
+              "prix": "2500"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

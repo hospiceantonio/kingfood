@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mettre la carte à jour — KING FOOD</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../identite.css">
+<link rel="icon" href="../icone-192.png">
+<style>
+:root{--blue-900:var(--kf-primaire-fonce);--blue:var(--kf-primaire);--red:var(--kf-accent);--cream:var(--kf-fond);--sand:var(--kf-fond-doux);--ink:var(--kf-texte);--ink-soft:var(--kf-texte-doux);--ok:#1B7F4B}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--kf-police-texte);background:var(--cream);color:var(--ink)}
+header{background:var(--blue-900);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.15rem}
+header p{margin:6px 0 0;font-size:.84rem;opacity:.85}
+header a{color:#fff}
+.etapes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:16px 22px 0;max-width:1400px;margin:0 auto}
+.etape{background:#fff;border-radius:12px;padding:12px 14px;font-size:.8rem;border:1px solid rgba(11,33,88,.12);line-height:1.5}
+.etape b{display:block;color:var(--blue);margin-bottom:3px}
+main{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding:16px 22px 40px;max-width:1400px;margin:0 auto}
+section,aside{background:#fff;border:1px solid rgba(11,33,88,.12);border-radius:14px;padding:16px;min-width:0}
+h2{font-size:.95rem;margin:0 0 12px;color:var(--blue-900)}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 14px;border-radius:999px;border:2px solid var(--blue);background:#fff;color:var(--blue);font:inherit;font-size:.8rem;font-weight:600;cursor:pointer;text-decoration:none}
+.btn.primary{background:var(--blue);color:#fff}
+.btn.rouge{border-color:var(--red);color:var(--red)}
+.btn:disabled,.btn[aria-disabled="true"]{opacity:.4;cursor:not-allowed;pointer-events:none}
+textarea{width:100%;min-height:540px;font:13px/1.55 ui-monospace,Menlo,Consolas,monospace;padding:12px;border:1px solid rgba(11,33,88,.2);border-radius:10px;resize:vertical;background:#FFFDF8;color:var(--ink)}
+textarea:focus{outline:2px solid var(--blue);outline-offset:1px}
+details{margin-bottom:12px;border:1px solid rgba(11,33,88,.12);border-radius:10px;padding:8px 12px;background:var(--sand)}
+summary{cursor:pointer;font-weight:600;font-size:.84rem}
+.champs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.champs label{font-size:.7rem;color:var(--ink-soft);display:flex;flex-direction:column;gap:3px}
+.champs input{font:inherit;font-size:.84rem;padding:7px 9px;border:1px solid rgba(11,33,88,.2);border-radius:8px;background:#fff}
+.champs .large{grid-column:1 / -1}
+.aide{font-size:.78rem;color:var(--ink-soft);margin-top:12px;line-height:1.6}
+.aide code{background:var(--sand);padding:1px 6px;border-radius:4px;color:var(--ink);white-space:nowrap}
+.aide pre{background:var(--sand);padding:10px 12px;border-radius:8px;overflow:auto;color:var(--ink);font-size:.76rem;line-height:1.5}
+.stats{font-size:.86rem;font-weight:600;margin-bottom:10px}
+.stats.ok{color:var(--ok)} .stats.ko{color:var(--red)}
+.erreurs{margin:0 0 12px;padding:0;list-style:none;display:grid;gap:6px;max-height:180px;overflow:auto}
+.erreurs li{background:#FDECEC;border-left:3px solid var(--red);padding:7px 10px;border-radius:6px;font-size:.78rem}
+.apercu{max-height:520px;overflow:auto;border:1px solid rgba(11,33,88,.12);border-radius:10px;padding:10px 14px;font-size:.84rem;background:#FFFDF8}
+.apercu h3{font-size:.92rem;margin:14px 0 6px;color:var(--blue-900);border-bottom:2px solid var(--red);padding-bottom:4px}
+.apercu h4{font-size:.74rem;text-transform:uppercase;letter-spacing:.06em;margin:12px 0 6px;color:var(--blue)}
+.apercu .it{display:flex;gap:10px;justify-content:space-between;padding:4px 0;border-bottom:1px dashed rgba(11,33,88,.12)}
+.apercu .it small{display:block;color:var(--ink-soft);font-size:.73rem}
+.apercu .px{white-space:nowrap;font-weight:600;color:var(--blue)}
+.apercu .num{color:var(--ink-soft);font-weight:700;font-size:.74rem}
+.apercu .note{margin:0 0 6px;font-size:.76rem;color:var(--ink-soft);font-style:italic}
+.message{font-size:.8rem;padding:8px 12px;border-radius:8px;background:var(--sand);margin-bottom:10px;display:none}
+.message.visible{display:block}
+@media (max-width:900px){main,.etapes{grid-template-columns:1fr}textarea{min-height:320px}.apercu{max-height:360px}}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Mettre la carte à jour — KING FOOD</h1>
+  <p>Le code QR imprimé ne change jamais : il pointe vers <a href="../" target="_blank" rel="noopener">hospiceantonio.github.io/kingfood/</a>.
+     Vous remplacez seulement le fichier <strong>menu.json</strong> et la nouvelle carte apparaît sur les téléphones.</p>
+</header>
+
+<div class="etapes">
+  <div class="etape"><b>1 · Charger</b> Récupérez la carte actuellement en ligne, puis modifiez le texte : prix, plats, catégories.</div>
+  <div class="etape"><b>2 · Télécharger</b> Quand tout est vert, téléchargez le nouveau <code>menu.json</code>.</div>
+  <div class="etape"><b>3 · Déposer</b> Glissez ce fichier sur GitHub dans le dossier <code>king-food/</code> et validez. En 1 à 2 minutes la carte est à jour.</div>
+</div>
+
+<main>
+  <section>
+    <h2>La carte, en texte</h2>
+    <div class="toolbar">
+      <button type="button" class="btn primary" id="btnCharger">1 · Charger la carte en ligne</button>
+      <label class="btn">Ouvrir un fichier menu.json<input type="file" id="fichier" accept=".json,application/json" hidden></label>
+    </div>
+    <div class="message" id="message"></div>
+
+    <details id="infos">
+      <summary>Coordonnées du restaurant (pied de page et boutons de la carte)</summary>
+      <div class="champs">
+        <label>Nom<input id="f-nom"></label>
+        <label>Sous-titre<input id="f-sousTitre"></label>
+        <label class="large">Adresse<input id="f-adresse"></label>
+        <label>Téléphone du bouton « Appeler »<input id="f-telephone" placeholder="+229 01 96 96 96 93"></label>
+        <label class="large">Tous les numéros affichés (texte libre)<input id="f-telephones" placeholder="Fidjrossè : +229 … — Akpakpa : +229 …"></label>
+        <label>WhatsApp (chiffres seuls, avec 229)<input id="f-whatsapp" placeholder="2290166076999" inputmode="numeric"></label>
+        <label>E-mail<input id="f-email" type="email"></label>
+        <label>Horaires<input id="f-horaires"></label>
+        <label class="large">Lien Google Maps<input id="f-maps"></label>
+        <label class="large">Réseaux sociaux (texte libre)<input id="f-reseaux" placeholder="Facebook · Instagram · TikTok : KING FOOD COTONOU"></label>
+        <label>Devise (après le prix)<input id="f-devise" placeholder="F"></label>
+        <label class="large">Mention en bas de carte<input id="f-mention" placeholder="Prix en francs CFA, service compris"></label>
+        <label>Date de la carte<input id="f-date" type="date"></label>
+      </div>
+    </details>
+
+    <textarea id="texte" spellcheck="false" placeholder="Cliquez sur « Charger la carte en ligne », ou tapez le menu ici :
+
+## Burgers | Prix : sandwich / assiette
+44-45 - Chicken Burger | 4000 / 5000
+64-65 - Burger King Food | jambon, viande, fromage, oignon, frites, sauce burger | 5000 / 6000
+
+## Boissons
+251 - Coca-Cola | 1000
+…"></textarea>
+
+    <div class="aide">
+      <strong>Le format, en trois règles :</strong>
+      <pre># La carte               ← une ligne « # » ouvre une carte (facultatif s'il n'y en a qu'une)
+## Burgers | Prix : sandwich / assiette     ← « ## » ouvre une catégorie ; après « | », une note
+44-45 - Chicken Burger | 4000 / 5000        ← Numéro - Nom | Prix (deux prix séparés par « / »)
+64-65 - Burger King Food | jambon, viande, fromage | 5000 / 6000   ← Nom | Description | Prix
+70 - Club Sandwich | 6000                   ← la description est facultative, le numéro aussi</pre>
+      Les prix s'écrivent <code>3500</code> ou <code>5000 / 6500</code> (petit / grand, sandwich / assiette…) ;
+      un prix vide est accepté (ex. la liste des accompagnements). Vous pouvez aussi coller des lignes
+      venant d'Excel (colonnes Nom, Description, Prix). Les numéros de plats servent à commander au comptoir :
+      la recherche du menu les retrouve.
+    </div>
+  </section>
+
+  <aside>
+    <h2>Vérification et aperçu</h2>
+    <div class="stats" id="stats">Rien à afficher pour l'instant.</div>
+    <ul class="erreurs" id="erreurs"></ul>
+    <div class="apercu" id="apercu"></div>
+    <div class="toolbar" style="margin:14px 0 0">
+      <button type="button" class="btn primary" id="btnTelecharger" disabled>2 · Télécharger menu.json</button>
+      <a class="btn rouge" id="lienDepot" target="_blank" rel="noopener">3 · Déposer sur GitHub</a>
+    </div>
+    <p class="aide">Sur GitHub : glissez <code>menu.json</code> dans la zone, laissez « Commit directly to the main branch »,
+       puis cliquez sur <em>Commit changes</em>. La publication est automatique.</p>
+  </aside>
+</main>
+
+<script>
+/* =========================================================
+   OUTIL D'IMPORT — tout se passe dans le navigateur.
+   Aucun mot de passe, aucun envoi : on produit un menu.json
+   que l'on dépose ensuite soi-même sur GitHub.
+   ========================================================= */
+
+// GitHub redirige de lui-même vers le nouveau nom si le dépôt est renommé.
+const DEPOT = 'hospiceantonio/kingfood';
+const DOSSIER_CARTE = '';   // menu.json est à la racine du dépôt
+const SOURCE_EN_LIGNE = '../menu.json';
+
+const CHAMPS = ['nom','sousTitre','adresse','telephone','telephones','whatsapp','email','horaires','maps','reseaux','devise','mention'];
+const DEFAUTS = {
+  nom: 'KING FOOD',
+  sousTitre: 'Vous êtes entre de bonnes mains',
+  adresse: 'Cotonou — Fidjrossè · Akpakpa (Sine Concorde)',
+  telephone: '+229 01 96 96 96 93',
+  telephones: 'Fidjrossè : +229 01 96 96 96 93 · +229 01 51 54 54 15 — Akpakpa : +229 01 59 88 99 88 · +229 01 40 95 95 19',
+  whatsapp: '',
+  email: '',
+  horaires: 'Ouvert tous les jours à partir de 10h',
+  maps: 'https://www.google.com/maps/search/?api=1&query=King+Food+Cotonou',
+  reseaux: 'Facebook · Instagram · TikTok : KING FOOD COTONOU',
+  devise: 'F',
+  mention: 'Service livraison disponible. Prix en francs CFA.'
+};
+
+const $ = id => document.getElementById(id);
+let menuCourant = null;
+
+/* ---------- Utilitaires ---------- */
+
+function normaliser(txt){
+  return String(txt).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+}
+function slug(txt){
+  return normaliser(txt).replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'x';
+}
+function unique(id, pris){
+  let candidat = id, i = 2;
+  while (pris.has(candidat)) candidat = `${id}-${i++}`;
+  pris.add(candidat);
+  return candidat;
+}
+function echapper(txt){
+  return String(txt).replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+}
+function aujourdhui(){
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+
+/* « 3500 » ou « 3.500 » ; deux prix séparés par « / » ; vide autorisé (plat sans prix) ; null si illisible. */
+function normaliserPrix(brut){
+  const texte = String(brut).trim();
+  if (!texte) return '';
+  const parties = texte.split('/').map(p => p.replace(/[\s  ]/g, ''));
+  for (const p of parties){
+    if (!/^\d+(?:\.\d{3})*$/.test(p)) return null;
+  }
+  return parties.join(' / ');
+}
+/* « 45 - Chicken Burger » ou « 40-41 - Burger végétarien » : le numéro du plat, puis son nom. */
+const NUMERO = /^(\d+(?:-\d+)?)\s+-\s+(.+)$/;
+
+/* ---------- Conversions ---------- */
+
+function texteDepuisMenu(menu){
+  return (menu.salles || []).map(s => {
+    const blocs = s.categories.map(c => {
+      const titre = c.note ? `## ${c.label} | ${c.note}` : `## ${c.label}`;
+      const lignes = c.items.map(it => {
+        const nom = it.numero ? `${it.numero} - ${it.nom}` : it.nom;
+        return it.description ? `${nom} | ${it.description} | ${it.prix}` : `${nom} | ${it.prix}`;
+      });
+      return [titre, ...lignes].join('\n');
+    });
+    return [`# ${s.label}`, '', blocs.join('\n\n')].join('\n');
+  }).join('\n\n\n') + '\n';
+}
+
+function menuDepuisTexte(texte){
+  const erreurs = [];
+  const salles = [];
+  const idsSalles = new Set();
+  let salle = null, cat = null, idsCats = null;
+
+  const nouvelleSalle = (label) => {
+    idsCats = new Set();
+    salle = { id: unique(slug(label), idsSalles), label, categories: [] };
+    salles.push(salle);
+    cat = null;
+  };
+
+  texte.split(/\r?\n/).forEach((brut, i) => {
+    const ligne = brut.trim();
+    const num = i + 1;
+    if (!ligne) return;
+
+    if (/^##/.test(ligne)){
+      const corps = ligne.replace(/^#+\s*/, '');
+      const sep = corps.indexOf('|');
+      const label = (sep >= 0 ? corps.slice(0, sep) : corps).trim();
+      const note = sep >= 0 ? corps.slice(sep + 1).trim() : '';
+      if (!label){ erreurs.push(`Ligne ${num} : le titre de catégorie est vide.`); return; }
+      if (!salle) nouvelleSalle('La carte');
+      cat = { id: unique(slug(label), idsCats), label };
+      if (note) cat.note = note;
+      cat.items = [];
+      salle.categories.push(cat);
+      return;
+    }
+    if (/^#/.test(ligne)){
+      const label = ligne.replace(/^#+\s*/, '').trim();
+      if (!label){ erreurs.push(`Ligne ${num} : le titre de carte est vide.`); return; }
+      nouvelleSalle(label);
+      return;
+    }
+
+    const parts = ligne.split(ligne.includes('|') ? '|' : '\t').map(s => s.trim());
+    if (parts.length < 2 || parts.length > 3){
+      erreurs.push(`Ligne ${num} : écrivez « Nom | Prix » ou « Nom | Description | Prix » — reçu « ${ligne.slice(0, 50)} ».`);
+      return;
+    }
+    if (!cat){
+      erreurs.push(`Ligne ${num} : ajoutez un titre de catégorie (## …) avant « ${parts[0]} ».`);
+      return;
+    }
+    let nom = parts[0], numero = '';
+    const m = nom.match(NUMERO);
+    if (m){ numero = m[1]; nom = m[2].trim(); }
+    const prixBrut = parts[parts.length - 1];
+    const prix = normaliserPrix(prixBrut);
+    if (!nom){ erreurs.push(`Ligne ${num} : le nom du plat est vide.`); return; }
+    if (prix === null){
+      erreurs.push(`Ligne ${num} : prix illisible « ${prixBrut} » pour « ${nom} » — écrivez 3500, 3.500 ou 5000 / 6500 (laissez vide s'il n'y a pas de prix).`);
+      return;
+    }
+    const item = {};
+    if (numero) item.numero = numero;
+    item.nom = nom;
+    if (parts.length === 3 && parts[1]) item.description = parts[1];
+    item.prix = prix;
+    cat.items.push(item);
+  });
+
+  salles.forEach(s => {
+    if (!s.categories.length) erreurs.push(`La carte « ${s.label} » n'a aucune catégorie.`);
+    s.categories.forEach(c => {
+      if (!c.items.length && !c.note) erreurs.push(`La catégorie « ${c.label} » (${s.label}) est vide : ajoutez des plats, ou une note après « | » dans son titre.`);
+    });
+  });
+  if (!salles.length) erreurs.push('La carte est vide : ajoutez au moins une catégorie et un plat.');
+
+  return { salles, erreurs };
+}
+
+function lireInfos(){
+  const infos = {};
+  CHAMPS.forEach(k => { const v = $(`f-${k}`).value.trim(); if (v) infos[k] = v; });
+  return infos;
+}
+function ecrireInfos(infos){
+  CHAMPS.forEach(k => { $(`f-${k}`).value = (infos && infos[k]) || ''; });
+}
+
+function produireMenu(){
+  const { salles, erreurs } = menuDepuisTexte($('texte').value);
+  const date = $('f-date').value || aujourdhui();
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) erreurs.push('La date de la carte est invalide.');
+  const menu = { $schema: './menu.schema.json', version: 1, miseAJour: date, restaurant: lireInfos(), salles };
+  return { menu, erreurs };
+}
+
+/* ---------- Affichage ---------- */
+
+function afficherApercu(menu){
+  $('apercu').innerHTML = menu.salles.map(s => `
+    <h3>${echapper(s.label)}</h3>
+    ${s.categories.map(c => `
+      <h4>${echapper(c.label)}</h4>
+      ${c.note ? `<p class="note">${echapper(c.note)}</p>` : ''}
+      ${c.items.map(it => `
+        <div class="it">
+          <span>${it.numero ? `<b class="num">${echapper(it.numero)}</b> ` : ''}${echapper(it.nom)}${it.description ? `<small>${echapper(it.description)}</small>` : ''}</span>
+          <span class="px">${it.prix ? echapper(it.prix) + ' ' + echapper(menu.restaurant.devise || 'F') : ''}</span>
+        </div>`).join('')}
+    `).join('')}
+  `).join('');
+}
+
+function rafraichir(){
+  const { menu, erreurs } = produireMenu();
+  const nbCats = menu.salles.reduce((n, s) => n + s.categories.length, 0);
+  const nbItems = menu.salles.reduce((n, s) => n + s.categories.reduce((m, c) => m + c.items.length, 0), 0);
+
+  $('erreurs').innerHTML = erreurs.map(e => `<li>${echapper(e)}</li>`).join('');
+  const stats = $('stats');
+  if (!$('texte').value.trim()){
+    stats.className = 'stats';
+    stats.textContent = 'Rien à afficher pour l\'instant.';
+  } else if (erreurs.length){
+    stats.className = 'stats ko';
+    stats.textContent = `${erreurs.length} problème${erreurs.length > 1 ? 's' : ''} à corriger avant de télécharger.`;
+  } else {
+    stats.className = 'stats ok';
+    stats.textContent = `✓ Carte prête : ${menu.salles.length} salle${menu.salles.length > 1 ? 's' : ''} · ${nbCats} catégories · ${nbItems} articles.`;
+  }
+  afficherApercu(menu);
+  menuCourant = erreurs.length ? null : menu;
+  $('btnTelecharger').disabled = !menuCourant;
+}
+
+function message(txt){
+  const el = $('message');
+  el.textContent = txt;
+  el.classList.toggle('visible', Boolean(txt));
+}
+
+/* ---------- Chargement ---------- */
+
+function chargerMenu(menu, origine){
+  if (!menu || !Array.isArray(menu.salles)) throw new Error('Ce fichier n\'est pas un menu.json valide.');
+  ecrireInfos(menu.restaurant || DEFAUTS);
+  $('f-date').value = aujourdhui();
+  $('texte').value = texteDepuisMenu(menu);
+  rafraichir();
+  message(`Carte chargée ${origine}${menu.miseAJour ? ` (datée du ${menu.miseAJour})` : ''}. Modifiez le texte, puis téléchargez.`);
+}
+
+$('btnCharger').addEventListener('click', async () => {
+  message('Chargement…');
+  try {
+    const rep = await fetch(`${SOURCE_EN_LIGNE}?v=${Date.now()}`, { cache: 'no-store' });
+    if (!rep.ok) throw new Error(`HTTP ${rep.status}`);
+    chargerMenu(await rep.json(), 'depuis le site en ligne');
+  } catch (err){
+    message('Impossible de lire la carte en ligne depuis ici — utilisez « Ouvrir un fichier menu.json » (le fichier menu.json est dans le dossier king-food/).');
+    console.warn(err);
+  }
+});
+
+$('fichier').addEventListener('change', e => {
+  const f = e.target.files[0];
+  if (!f) return;
+  const lecteur = new FileReader();
+  lecteur.onload = () => {
+    try { chargerMenu(JSON.parse(lecteur.result), `depuis ${f.name}`); }
+    catch (err){ message(`Fichier illisible : ${err.message}`); }
+  };
+  lecteur.readAsText(f, 'utf-8');
+  e.target.value = '';
+});
+
+/* ---------- Téléchargement ---------- */
+
+function telecharger(){
+  if (!menuCourant) return;
+  const blob = new Blob([JSON.stringify(menuCourant, null, 2) + '\n'], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'menu.json';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+  message('menu.json téléchargé — passez à l\'étape 3 : déposez-le sur GitHub dans le dossier king-food/.');
+}
+$('btnTelecharger').addEventListener('click', telecharger);
+document.addEventListener('keydown', e => {
+  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's'){ e.preventDefault(); telecharger(); }
+});
+
+/* ---------- Démarrage ---------- */
+
+$('lienDepot').href = `https://github.com/${DEPOT}/upload/main${DOSSIER_CARTE ? '/' + DOSSIER_CARTE : ''}`;
+ecrireInfos(DEFAUTS);
+$('f-date').value = aujourdhui();
+$('texte').addEventListener('input', rafraichir);
+CHAMPS.forEach(k => $(`f-${k}`).addEventListener('input', rafraichir));
+$('f-date').addEventListener('input', rafraichir);
+rafraichir();
+</script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<title>Cartes de table A6 — QR menu KING FOOD (4 par feuille A4)</title>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="polices.css">
+<link rel="stylesheet" href="../identite.css">
+<style>
+@page{size:A4 portrait;margin:0}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#777}
+body{font-family:var(--kf-police-texte);color:var(--kf-texte);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.consigne{width:210mm;margin:6mm auto 0;color:#fff;font-size:11px;text-align:center}
+@media print{html,body{background:#fff}.consigne{display:none}}
+.tete{width:100%;background:var(--kf-entete-fond);color:var(--kf-entete-texte);display:flex;flex-direction:column;align-items:center;text-align:center}
+.tete .logo[hidden]{display:none}
+.kicker{font-family:var(--kf-police-titre);font-weight:900;text-transform:uppercase;letter-spacing:.14em;color:var(--kf-primaire)}
+.nom{font-family:var(--kf-police-titre);font-weight:900;text-transform:uppercase;letter-spacing:.06em;line-height:1.05}
+.bande{width:100%;background:var(--kf-primaire);color:var(--kf-sur-primaire);font-family:var(--kf-police-titre);font-weight:900;text-transform:uppercase;letter-spacing:.06em;text-align:center}
+.qr{background:#fff;border:.6mm solid var(--kf-noir);}
+.qr img{display:block}
+.rouge{color:var(--kf-accent);font-weight:700}
+.pied{width:100%;background:var(--kf-noir);color:#fff;text-align:center}
+.pied b{color:var(--kf-primaire);font-weight:800}
+
+.feuille{width:210mm;height:297mm;background:#fff;margin:8mm auto;position:relative;display:grid;grid-template-columns:105mm 105mm;grid-template-rows:148.5mm 148.5mm;overflow:hidden}
+@media print{.feuille{margin:0;page-break-after:always}}
+.feuille::before,.feuille::after{content:"";position:absolute;pointer-events:none}
+.feuille::before{left:0;right:0;top:148.5mm;height:.2mm;background:repeating-linear-gradient(90deg,#999 0 2mm,transparent 2mm 4mm)}
+.feuille::after{top:0;bottom:0;left:105mm;width:.2mm;background:repeating-linear-gradient(180deg,#999 0 2mm,transparent 2mm 4mm)}
+.carte{width:105mm;height:148.5mm;background:#fff;display:flex;flex-direction:column;align-items:center;text-align:center;overflow:hidden}
+.tete{padding:6mm 4mm 4mm}
+.tete .logo{width:17mm;height:17mm;object-fit:contain;margin-bottom:1.5mm}
+.kicker{font-size:3mm}
+.nom{font-size:7.5mm}
+.sous{font-size:2.5mm;font-weight:700;margin-top:1mm}
+.bande{padding:2.6mm 4mm;font-size:3.6mm;margin-top:2.5mm}
+.qr{padding:2mm;margin-top:5mm;border-radius:2.5mm}
+.qr img{width:52mm;height:52mm}
+.rouge{font-size:2.8mm;margin-top:3.5mm;letter-spacing:.04em;text-transform:uppercase}
+.aide{font-size:2.6mm;color:var(--kf-texte-doux);margin-top:2mm;line-height:1.4;padding:0 9mm}
+.pied{margin-top:auto;padding:3.2mm 4mm;font-size:2.5mm;line-height:1.5}
+</style>
+</head>
+<body>
+<p class="consigne">Imprimer sur papier épais (250–300 g), A4, 100 % (sans « ajuster à la page »), puis découper le long des pointillés → 4 cartes A6. Ctrl+P pour imprimer.</p>
+<div class="feuille">
+  <div class="carte">
+    <div class="tete">
+      <img class="logo" src="../logo.png" alt="" onerror="this.hidden=true">
+      <div class="kicker">Le menu</div>
+      <div class="nom">King Food</div>
+      <div class="sous">Vous êtes entre de bonnes mains</div>
+    </div>
+    <div class="bande">Scannez pour consulter le menu</div>
+    <div class="qr"><img src="qr-carte.svg" alt="Code QR du menu"></div>
+    <div class="rouge">Menu complet · Prix à jour</div>
+    <div class="aide">Ouvrez l'appareil photo de votre téléphone et visez le code.</div>
+    <div class="pied"><b>hospiceantonio.github.io/kingfood</b><br>Ouvert tous les jours à partir de 10h · Service livraison disponible</div>
+  </div>
+  <div class="carte">
+    <div class="tete">
+      <img class="logo" src="../logo.png" alt="" onerror="this.hidden=true">
+      <div class="kicker">Le menu</div>
+      <div class="nom">King Food</div>
+      <div class="sous">Vous êtes entre de bonnes mains</div>
+    </div>
+    <div class="bande">Scannez pour consulter le menu</div>
+    <div class="qr"><img src="qr-carte.svg" alt="Code QR du menu"></div>
+    <div class="rouge">Menu complet · Prix à jour</div>
+    <div class="aide">Ouvrez l'appareil photo de votre téléphone et visez le code.</div>
+    <div class="pied"><b>hospiceantonio.github.io/kingfood</b><br>Ouvert tous les jours à partir de 10h · Service livraison disponible</div>
+  </div>
+  <div class="carte">
+    <div class="tete">
+      <img class="logo" src="../logo.png" alt="" onerror="this.hidden=true">
+      <div class="kicker">Le menu</div>
+      <div class="nom">King Food</div>
+      <div class="sous">Vous êtes entre de bonnes mains</div>
+    </div>
+    <div class="bande">Scannez pour consulter le menu</div>
+    <div class="qr"><img src="qr-carte.svg" alt="Code QR du menu"></div>
+    <div class="rouge">Menu complet · Prix à jour</div>
+    <div class="aide">Ouvrez l'appareil photo de votre téléphone et visez le code.</div>
+    <div class="pied"><b>hospiceantonio.github.io/kingfood</b><br>Ouvert tous les jours à partir de 10h · Service livraison disponible</div>
+  </div>
+  <div class="carte">
+    <div class="tete">
+      <img class="logo" src="../logo.png" alt="" onerror="this.hidden=true">
+      <div class="kicker">Le menu</div>
+      <div class="nom">King Food</div>
+      <div class="sous">Vous êtes entre de bonnes mains</div>
+    </div>
+    <div class="bande">Scannez pour consulter le menu</div>
+    <div class="qr"><img src="qr-carte.svg" alt="Code QR du menu"></div>
+    <div class="rouge">Menu complet · Prix à jour</div>
+    <div class="aide">Ouvrez l'appareil photo de votre téléphone et visez le code.</div>
+    <div class="pied"><b>hospiceantonio.github.io/kingfood</b><br>Ouvert tous les jours à partir de 10h · Service livraison disponible</div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Le Menu — KING FOOD</title>
+<meta name="description" content="Le menu KING FOOD (Cotonou — Fidjrossè et Akpakpa) : burgers, chawarmas, pizzas, grillades, plats africains, cocktails et desserts. Ouvert tous les jours à partir de 10h, livraison disponible.">
+<meta name="theme-color" content="#FFC300">
+<meta name="robots" content="index,follow">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preload" href="menu.json" as="fetch" crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="identite.css">
+<link rel="stylesheet" href="carte.css">
+<link rel="icon" href="icone-192.png">
+<link rel="apple-touch-icon" href="icone-192.png">
+</head>
+<body>
+
+<header class="carte-header">
+  <!-- Le logo se remplace en déposant un nouveau logo.png dans ce dossier. -->
+  <img class="carte-logo" src="logo.png" alt="" onerror="this.hidden=true">
+  <p class="carte-kicker">Le menu</p>
+  <h1 class="carte-brand" id="nomRestaurant">King Food</h1>
+  <p class="carte-sub" id="sousTitre" hidden></p>
+</header>
+
+<!-- Barre collante : salle + recherche + catégories -->
+<div class="sticky-bar">
+  <div class="rooms" id="rooms" role="tablist" aria-label="Choisir la carte"></div>
+  <div class="search-wrap">
+    <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+      <line x1="16.5" y1="16.5" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    <input id="search" type="search" inputmode="search" autocomplete="off"
+           placeholder="Rechercher un plat, un numéro, une boisson…" aria-label="Rechercher dans le menu">
+    <button type="button" id="searchClear" class="search-clear" aria-label="Effacer la recherche" hidden>&times;</button>
+  </div>
+  <nav class="cats" id="cats" aria-label="Catégories"></nav>
+</div>
+
+<main id="menu" class="menu" aria-live="polite">
+  <p class="loading">Chargement du menu…</p>
+</main>
+
+<footer class="carte-footer">
+  <p class="maj" id="maj"></p>
+  <div class="foot-info" id="footInfo"></div>
+  <p class="foot-legal" id="mention" hidden></p>
+</footer>
+
+<!-- Barre d'actions fixe en bas d'écran -->
+<div class="actionbar" id="actionbar"></div>
+
+<script src="carte.js"></script>
+</body>
+</html>
