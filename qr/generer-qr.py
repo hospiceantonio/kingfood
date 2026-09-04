@@ -41,7 +41,7 @@ LOGO_DANS_DISQUE = 0.78 # taille du logo dans le disque
 
 # ---------------------------------------------------------------- logo (optionnel)
 LOGO_SVG = ICI.parent / "logo.svg"
-LOGO_PNG = ICI.parent / "logo.png"
+LOGO_PNG = ICI / "logo-hd.png" if (ICI / "logo-hd.png").exists() else RACINE / "logo.png"   # haute définition si présente
 
 
 def logo_disponible():

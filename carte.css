@@ -38,7 +38,7 @@ button{font-family:inherit;cursor:pointer}
 .carte-kicker{
   margin:0;
   font-family:var(--kf-police-titre);
-  font-weight:900;
+  font-weight:800;
   text-transform:uppercase;
   letter-spacing:.14em;
   color:var(--kf-primaire);
@@ -47,7 +47,7 @@ button{font-family:inherit;cursor:pointer}
 .carte-brand{
   font-family:var(--kf-police-titre);
   font-size:2rem;
-  font-weight:900;
+  font-weight:800;
   text-transform:uppercase;
   letter-spacing:.06em;
   margin:0;
@@ -137,7 +137,7 @@ button{font-family:inherit;cursor:pointer}
   text-align:center;
   font-family:var(--kf-police-titre);
   font-size:1.02rem;
-  font-weight:900;
+  font-weight:800;
   text-transform:uppercase;
   letter-spacing:.05em;
 }

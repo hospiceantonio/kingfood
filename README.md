@@ -8,7 +8,7 @@ Cette page lit le fichier `menu.json` de ce dépôt. Pour changer le menu, on
 remplace `menu.json` — jamais le code QR.
 
 ```
-index.html, carte.css, carte.js   la page que voient les clients (ne pas modifier)
+index.html, carte.css, carte.js, sw.js, polices/   la page que voient les clients (ne pas modifier)
 identite.css                      la charte graphique (couleurs, polices) — un seul fichier
 logo.png                          le logo (fond transparent) : page, QR, supports, icônes
 menu.json                         ★ LE MENU — le seul fichier à remplacer quand il change
@@ -44,7 +44,7 @@ qr/                               le code QR, les supports d'impression, le gén
    `menu.json` téléchargé, laisser « Commit directly to the main branch » et
    cliquer sur **Commit changes**.
 
-Une à deux minutes plus tard, le menu est à jour sur tous les téléphones qui
+Quelques minutes plus tard (dix au plus), le menu est à jour sur tous les téléphones qui
 scannent le QR (l'onglet **Actions** du dépôt montre la publication en cours).
 
 > Variante rapide pour un seul prix : sur GitHub, ouvrir `menu.json`, cliquer

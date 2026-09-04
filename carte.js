@@ -7,7 +7,7 @@
    ========================================================= */
 
 const SOURCE = 'menu.json';
-const CACHE_KEY = 'kingfood.carte.v1';   // copie de secours si le réseau manque
+const CACHE_KEY = 'kingfood.carte.v2';   // dernière copie vue : affichée aussitôt, puis rafraîchie
 
 let menu = null;
 let salleCourante = null;
@@ -44,27 +44,6 @@ function surligner(texteEchappe, terme){
     depart = i + cible.length;
   }
   return sortie + texteEchappe.slice(depart);
-}
-
-/* ---------- Chargement des données ---------- */
-
-async function chargerMenu(){
-  try {
-    // no-store + paramètre unique : le téléphone reçoit toujours le menu à jour,
-    // même après une mise en cache par GitHub Pages ou par l'opérateur mobile.
-    const rep = await fetch(`${SOURCE}?v=${Date.now()}`, { cache: 'no-store' });
-    if (!rep.ok) throw new Error(`HTTP ${rep.status}`);
-    const data = await rep.json();
-    try { localStorage.setItem(CACHE_KEY, JSON.stringify(data)); } catch (_){ /* mode privé */ }
-    return { data, horsLigne: false };
-  } catch (err){
-    // Réseau absent ou instable : on ressert le dernier menu vu sur ce téléphone.
-    try {
-      const secours = localStorage.getItem(CACHE_KEY);
-      if (secours) return { data: JSON.parse(secours), horsLigne: true };
-    } catch (_){ /* rien en réserve */ }
-    throw err;
-  }
 }
 
 /* ---------- Rendu ---------- */
@@ -247,24 +226,60 @@ function brancherRecherche(){
 
 /* ---------- Démarrage ---------- */
 
+let rechercheBranchee = false;
+
+function afficher(data, horsLigne){
+  menu = data;
+  if (!menu.salles.some(s => s.id === salleCourante)) salleCourante = menu.salles[0].id;
+  afficherEnTete();
+  afficherOngletsSalle();
+  afficherCategories();
+  afficherCarte();
+  afficherPiedDePage(horsLigne);
+  if (!rechercheBranchee){ brancherRecherche(); rechercheBranchee = true; }
+}
+
+function menuValide(m){
+  return m && Array.isArray(m.salles) && m.salles.length > 0;
+}
+
 (async function demarrer(){
+  // 1. Affichage immédiat de la dernière copie vue sur ce téléphone, s'il y en a une :
+  //    le client n'attend pas le réseau pour lire le menu.
+  let texteCopie = null;
   try {
-    const { data, horsLigne } = await chargerMenu();
-    menu = data;
+    texteCopie = localStorage.getItem(CACHE_KEY);
+    const copie = texteCopie && JSON.parse(texteCopie);
+    if (menuValide(copie)) afficher(copie, false); else texteCopie = null;
+  } catch (_){ texteCopie = null; }
 
-    if (!menu.salles || !menu.salles.length) throw new Error('menu.json ne contient aucune carte');
-    salleCourante = menu.salles[0].id;
-
-    afficherEnTete();
-    afficherOngletsSalle();
-    afficherCategories();
-    afficherCarte();
-    afficherPiedDePage(horsLigne);
-    brancherRecherche();
+  // 2. Puis le menu à jour depuis le serveur, en arrière-plan.
+  //    cache: 'no-store' → jamais servi depuis le cache du navigateur ;
+  //    le réseau de GitHub Pages peut garder une version jusqu'à dix minutes.
+  try {
+    const rep = await fetch(SOURCE, { cache: 'no-store' });
+    if (!rep.ok) throw new Error(`HTTP ${rep.status}`);
+    const texte = await rep.text();
+    const frais = JSON.parse(texte);
+    if (!menuValide(frais)) throw new Error('menu.json ne contient aucune carte');
+    try { localStorage.setItem(CACHE_KEY, texte); } catch (_){ /* mode privé */ }
+    if (texte !== texteCopie) afficher(frais, false);
   } catch (err){
-    document.getElementById('menu').innerHTML = `
-      <p class="empty"><strong>Le menu n'a pas pu être chargé.</strong>
-      Vérifiez votre connexion et rechargez la page.</p>`;
-    console.error('Chargement du menu impossible :', err);
+    if (texteCopie){
+      // Réseau absent ou instable : la copie locale reste affichée, on le signale.
+      afficherPiedDePage(true);
+      console.warn('Menu affiché hors connexion :', err.message);
+    } else {
+      document.getElementById('menu').innerHTML = `
+        <p class="empty"><strong>Le menu n'a pas pu être chargé.</strong>
+        Vérifiez votre connexion et rechargez la page.</p>`;
+      console.error('Chargement du menu impossible :', err);
+    }
   }
 })();
+
+/* Les fichiers de la page (polices, logo, styles, script) sont gardés en réserve
+   sur le téléphone : aux visites suivantes, la page s'ouvre sans attendre le réseau. */
+if ('serviceWorker' in navigator){
+  navigator.serviceWorker.register('sw.js').catch(() => { /* facultatif */ });
+}
