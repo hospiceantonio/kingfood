@@ -30,10 +30,16 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Vérifier menu.json avant publication
-        run: node -e "const m=JSON.parse(require('fs').readFileSync('menu.json','utf8')); if(!Array.isArray(m.salles)||!m.salles.length) throw new Error('menu.json : aucune carte'); const n=m.salles.reduce((t,s)=>t+s.categories.reduce((u,c)=>u+c.items.length,0),0); console.log('menu.json valide —', m.salles.length, 'carte(s),', n, 'articles')"
+        run: |
+          node -e "
+            const m = JSON.parse(require('fs').readFileSync('menu.json', 'utf8'));
+            if (!Array.isArray(m.salles) || !m.salles.length) throw new Error('menu.json ne contient aucune carte');
+            const n = m.salles.reduce((t, s) => t + s.categories.reduce((u, c) => u + c.items.length, 0), 0);
+            console.log('menu.json valide —', m.salles.length, 'carte(s),', n, 'articles');
+          "
 
       - name: Assembler le site
-        run: rsync -a --exclude .git --exclude .github --exclude _site ./ _site/
+        run: rsync -a --exclude .git --exclude .github --exclude _site ./ _site/ && ls _site
 
       - name: Configurer Pages
         uses: actions/configure-pages@v5
