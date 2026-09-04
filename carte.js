@@ -257,9 +257,9 @@ function menuValide(m){
   //    cache: 'no-store' → jamais servi depuis le cache du navigateur ;
   //    le réseau de GitHub Pages peut garder une version jusqu'à dix minutes.
   try {
-    const rep = await fetch(SOURCE, { cache: 'no-store' });
-    if (!rep.ok) throw new Error(`HTTP ${rep.status}`);
-    const texte = await rep.text();
+    const texte = window.menuEnCours
+      ? await window.menuEnCours                       // téléchargement lancé dans l'en-tête de la page
+      : await fetch(SOURCE, { cache: 'no-store' }).then(r => r.ok ? r.text() : Promise.reject(new Error(`HTTP ${r.status}`)));
     const frais = JSON.parse(texte);
     if (!menuValide(frais)) throw new Error('menu.json ne contient aucune carte');
     try { localStorage.setItem(CACHE_KEY, texte); } catch (_){ /* mode privé */ }
