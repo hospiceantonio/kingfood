@@ -6,18 +6,19 @@ jaunes, plats numérotés, descriptions en rouge.
 
 | Fichier | Rôle |
 |---|---|
-| `KING-FOOD-nouveau-menu-prix-a-completer.pdf` | **Le document à compléter.** Chaque prix est une case vide : on la remplit à l'écran (champ de saisie) ou à la main après impression. |
+| `KING-FOOD-nouveau-menu-prix-a-completer.pdf` | **Le document à envoyer au restaurant.** Pages 1 et 2 : le menu, chaque prix étant une case vide à remplir à l'écran (champ de saisie) ou à la main. Page 3 : mode d'emploi, points à confirmer et suggestions, avec cases à cocher et lignes de réponse. |
 | `nouveau-menu.txt` | Le contenu : une ligne par plat, `Nom \| Description \| Prix`. C'est ici qu'on corrige un plat ou qu'on saisit les prix. |
 | `outils/composer.py` | Met en page `nouveau-menu.txt` (répartition des rubriques par colonne dans `PLAN`). |
+| `outils/questions.py` | Le texte de la page 3 (questions et suggestions pour le restaurant). |
 | `outils/rendre.js` | Rend la page en PDF et vérifie qu'aucune colonne ne déborde. |
-| `outils/champs.py` | Pose un champ de saisie sur chaque case « prix ». |
+| `outils/champs.py` | Pose un champ de saisie sur chaque case : prix, réponses, cases à cocher. |
 | `polices-menu.css` | Polices embarquées (Amatic SC, Cabin, Sacramento, Montserrat — licence OFL). |
 
 ## Régénérer le PDF
 
 ```
 pip install pymupdf            # Playwright (Chromium) doit aussi être installé
-python3 outils/composer.py
+python3 outils/composer.py            # ajouter --sans-questions pour le menu seul (2 pages)
 node outils/rendre.js menu-a-completer.html brouillon.pdf champs.json
 python3 outils/champs.py brouillon.pdf champs.json KING-FOOD-nouveau-menu-prix-a-completer.pdf
 ```

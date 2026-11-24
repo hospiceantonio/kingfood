@@ -3,13 +3,18 @@
 dans la présentation de l'ancien menu imprimé : cartouches jaunes, plats numérotés,
 descriptions en rouge, points de conduite jusqu'au prix.
 
-    python3 outils/composer.py            → menu-a-completer.html
+    python3 outils/composer.py                    → menu-a-completer.html (menu + page de questions)
+    python3 outils/composer.py --sans-questions   → le menu seul
 
-Le contenu vient de nouveau-menu.txt ; la répartition en colonnes est dans PLAN."""
+Le contenu vient de nouveau-menu.txt ; la répartition en colonnes est dans PLAN.
+La page de questions destinée au restaurant est décrite dans questions.py."""
 import html
 import pathlib
 import re
+import sys
 import unicodedata
+
+import questions
 
 ICI = pathlib.Path(__file__).resolve().parent.parent
 SOURCE = ICI / "nouveau-menu.txt"
@@ -246,13 +251,14 @@ document.fonts.ready.then(() => {
 """
 
 
-def composer():
-    rubriques = {r["titre"]: r for r in lire(SOURCE)}
+def composer(avec_questions=True):
+    liste = lire(SOURCE)
+    rubriques = {r["titre"]: r for r in liste}
     placees = [b[1] for col in PLAN for b in col if b[0] == "section"]
     manquantes = [t for t in rubriques if t not in placees]
     if manquantes or len(set(placees)) != len(placees):
         raise SystemExit(f"PLAN incomplet ou en double : {manquantes or placees}")
-    pages = []
+    pages, total = [], len(PLAN) // 4 + (1 if avec_questions else 0)
     for p in range(0, len(PLAN), 4):
         cols = []
         for col in PLAN[p:p + 4]:
@@ -260,15 +266,17 @@ def composer():
             for b in col:
                 blocs.append(TETE if b[0] == "tete" else rendu_section(rubriques[b[1]]) if b[0] == "section" else rendu_deco(b[1], b[2]))
             cols.append(f'<div class="col">{"".join(blocs)}</div>')
-        folio = f'Page {p // 4 + 1} / {len(PLAN) // 4}'
+        folio = f'Page {p // 4 + 1} / {total}'
         pages.append(f'<div class="page"><div class="filet-jaune"></div><div class="cadre">{"".join(cols)}</div>'
                      f'<div class="mention">{html.escape(MENTION)}</div><div class="folio">{folio}</div></div>')
+    if avec_questions:
+        pages.append(questions.rendu_page(liste, TETE, MENTION, f'Page {total} / {total}', rendu_deco))
     doc = ('<!DOCTYPE html>\n<html lang="fr">\n<head>\n<meta charset="UTF-8">\n<title>KING FOOD — nouveau menu (prix à compléter)</title>\n'
-           '<link rel="stylesheet" href="polices-menu.css">\n<style>' + CSS + '</style>\n</head>\n<body>\n' + "\n".join(pages) + '\n<script>' + SCRIPT + '</script>\n</body>\n</html>\n')
+           '<link rel="stylesheet" href="polices-menu.css">\n<style>' + CSS + questions.CSS + '</style>\n</head>\n<body>\n' + "\n".join(pages) + '\n<script>' + SCRIPT + '</script>\n</body>\n</html>\n')
     SORTIE.write_text(doc, encoding="utf-8")
     nb = sum(len(r["plats"]) for r in rubriques.values())
     print(f"{SORTIE.name} : {len(rubriques)} rubriques, {nb} plats, {len(pages)} pages")
 
 
 if __name__ == "__main__":
-    composer()
+    composer(avec_questions="--sans-questions" not in sys.argv[1:])

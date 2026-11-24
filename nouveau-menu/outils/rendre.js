@@ -1,5 +1,5 @@
 // Rend menu-a-completer.html en PDF A3 paysage, contrôle le remplissage de chaque colonne
-// et relève la position des cases « prix » (pour en faire des champs de saisie).
+// et relève la position des cases à remplir (prix, réponses, cases à cocher) pour en faire des champs de saisie.
 // Usage : node outils/rendre.js <entrée.html> <sortie.pdf> <champs.json> [dossier-aperçus]
 const { chromium } = require('playwright');
 const fs = require('fs');
@@ -25,11 +25,11 @@ const [,, entree, sortiePdf, sortieChamps, apercus] = process.argv;
         deborde: col.scrollHeight - col.clientHeight > 1,
       };
     });
-    const champs = [...document.querySelectorAll('.blanc[data-champ]')].map(b => {
+    const champs = [...document.querySelectorAll('[data-champ]')].map(b => {
       const feuille = b.closest('.page');
       const pages = [...document.querySelectorAll('.page')];
       const f = feuille.getBoundingClientRect(), r = b.getBoundingClientRect();
-      return { nom: b.dataset.champ, libelle: b.dataset.libelle, page: pages.indexOf(feuille),
+      return { nom: b.dataset.champ, type: b.dataset.type || 'prix', libelle: b.dataset.libelle, page: pages.indexOf(feuille),
                x: r.left - f.left, y: r.top - f.top, l: r.width, h: r.height };   // en px CSS (96 dpi)
     });
     const polices = [...new Set([...document.fonts].filter(f => f.status === 'loaded').map(f => `${f.family} ${f.weight}`))];
@@ -49,7 +49,8 @@ const [,, entree, sortiePdf, sortieChamps, apercus] = process.argv;
   for (const c of bilan.colonnes) {
     console.log(`colonne ${c.colonne} : contenu ${String(c.contenu).padStart(5)} / ${c.hauteur} mm · décor(s) ${c.decors.join(' + ') || '—'} mm${c.deborde ? '  ← DÉBORDE' : ''}`);
   }
-  console.log(`${bilan.champs.length} cases prix · polices : ${bilan.polices.join(', ')}`);
+  const parType = t => bilan.champs.filter(c => c.type === t).length;
+  console.log(`champs : ${parType('prix')} prix, ${parType('texte')} réponses, ${parType('case')} cases à cocher · polices : ${bilan.polices.join(', ')}`);
   await navigateur.close();
   if (bilan.colonnes.some(c => c.deborde)) process.exit(2);
 })().catch(e => { console.error(e); process.exit(1); });
