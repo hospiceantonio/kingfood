@@ -1,0 +1,122 @@
+// KING FOOD — nouveau menu, transcrit des 7 feuilles manuscrites reçues le 24/11/2026.
+// Une ligne par plat :  Nom | Description | Prix
+//   - prix vide            → case à compléter sur le PDF
+//   - @Complet / Demi      → deux cases à compléter (deux formats)
+// Les numéros des plats sont attribués automatiquement, dans l'ordre du fichier.
+
+## Petit déjeuner
+Toast grillé | 3 pièces, 2 confitures |
+Œuf brouillé | |
+Œufs au plat | 3 œufs |
+Omelette jambon et fromage | |
+Omelette au fromage | |
+Omelette au jambon | |
+Omelette forestière | tomate, oignon, persil, champignon |
+Omelette parmentière | pomme de terre, fromage, omelette nature |
+
+## Nos entrées froides
+Salade César | laitue, tranches de poulet, parmesan, ail, jambon |
+Salade du chef | laitue, jambon, tomate, fromage, maïs doux, concombre, olive, sauce blanche, blanc de poulet |
+Duo d'avocat aux crevettes | crevettes, avocats, sauce cocktail, oignon, pamplemousse, laitue, olive noire, tomate, persil |
+Fattouche | laitue, tomate, oignon, concombre, feuilles de menthe, poivron, huile d'olive, pain grillé |
+Salade taboulé | persil, tomates, blé concassé, oignon, huile d'olive, sumac, jus de citron |
+Salade crudités de saison | betterave, carottes, choux, laitue, tomates, olive noire |
+Salade océane | feuilles de laitue, tomate, avocat, thon, carottes râpées, cœur de palmier, amandes grillées, crevettes, crabe |
+Salade King Food | laitue, avocats, fromage parmesan, crevettes, blancs de poulet grillés, oignon grillé, pain grillé |
+Salade King Food magnifique | pâte tortilla, avocat, crevettes, laitue, olive noire |
+Salade basket de burritos | tortilla, légumes, viande de bœuf, sauce |
+
+## Entrées chaudes
+Potage de légumes | carottes, poireaux, pomme de terre, oignon |
+Soupe de légumes aux saucisses de Francfort | pomme de terre, carotte, haricots verts, saucisse, oignon, fumet de volaille |
+Hors-d'œuvre chaud | carottes, poivron, boulettes, petits pois, choux, crème fraîche |
+Crevettes sautées à l'ail | ail, persil, crevettes, basilic sec, beurre pasteurisé |
+Crevettes panées sauce tartare | crevettes, chapelure, cornichon, mayonnaise, persil, câpres |
+Rouleaux aux fromages | |
+Assiette de frites au cheddar | |
+Salade chawarma viande | laitue, croûtons, chawarma viande, parmesan |
+Salade chawarma poulet | laitue, croûtons, chawarma poulet, parmesan |
+Salade tiède de gambas à l'ananas | laitue, ananas, gambas, sauce vinaigrette |
+Crevettes sautées aux nouilles | crevettes, champignons chinois, nouilles, carottes, haricots verts |
+Salade langue de bœuf | laitue, tomate fraîche, oignon, amandes grillées, langue de bœuf |
+
+## Petit déjeuner oriental
+Œuf brouillé à la viande | |
+Sandwich samaké | |
+Sandwich malaké végétarien | |
+Fatayer à la viande | 6 pièces |
+Rouleau aux fromages | |
+
+## Burgers
+Zinger burger | |
+Double cheese burger | 2 viandes, 2 fromages |
+Hamburger végétarien | aubergine, tomate, oignon, frites, cornichon |
+
+## Nos pâtes
+Tagliatelles aux fruits de mer | tagliatelles, crevettes, poisson, champignon |
+Spaghetti sautés aux légumes | carottes, poivron, choux, petits pois, oignon |
+Pennes aux fruits de mer | crevettes, calamar, crème fraîche, tomate, champignon, parmesan, poivre blanc |
+Farfalle King Food | brochette de bœuf aux fromages, sauce tomate, farfalle |
+
+## Fruits de mer
+Gambas sautées à l'ail | |
+Poisson strogonof à la crème | |
+Filet de poisson grillé | |
+Brochette de poisson grillée | carpe rouge ou dorade |
+Filet de poisson sauce Marcelino | sauce provençale, champignon, ail |
+Crevettes à l'indienne | |
+Gambas à la crème | |
+Brochette de gambas | |
+
+## Menu enfants
+Nuggets de poulet | 7 nuggets, sauce cocktail, frites, 1 Coca |
+Quart de poulet grillé + frites | |
+
+## Sandwichs
+Panini caprese | tomates, mozzarella |
+Panini Vénito | poulet, fromage, tomates |
+Panini rôti de bœuf | rôti de bœuf, légumes, sauce maison |
+Bol de frites | |
+Crispy poulet | crispy, choux, crème d'ail, ketchup |
+Steak sub | émincé de bœuf, oignon, champignon, mayonnaise |
+Chicken sub | poulet, oignon, champignon, crème d'ail |
+Sandwich au thon | |
+
+## Viandes rouges
+Filet de bœuf sauce chasseur | |
+Filet de bœuf grillé à l'ancienne | |
+Escalope de bœuf panée | |
+Langue de bœuf grillée sauce champignon | cordon bleu |
+
+## Brochettes & grillades
+Brochette de viande | |
+Brochette taouk poisson | |
+Brochette taouk poulet | |
+Pintade braisée | |
+Crevettes sautées à l'ail | |
+Assiette de crispy | |
+Poulet KFC | | @Complet / Demi
+Poulet chair | | @Complet / Demi
+Poulet chair à la machine | télévisé |
+Poulet braisé à l'ail | |
+Demi-poulet chair braisé au charbon | |
+Poulet bicyclette | | @Demi / Complet
+
+## Viandes blanches
+Escalope de poulet panée | |
+Escalope de poulet aux fromages à la provençale | |
+Fricassée de poulet aux légumes | poulet strogonof à la sauce tomate |
+
+## Nouveautés du chef
+Filet de poisson forestière | filet de poisson, sauce crème, champignon |
+Émincé de bœuf à l'ancienne | émincé de bœuf, sauce crème, moutarde à l'ancienne |
+Steak aux champignons | filet de bœuf, sauce crème, champignon |
+Steak aux poivres verts | filet de bœuf, sauce aux poivres verts |
+Steak aux poivres concassés | steak, poivre concassé |
+Poulet strogonof | filet de bœuf, sauce aux poivres verts |
+Poulet kédjénou | poulet, sauce tomate, oignons, épices africaines |
+Sauce aux poissons frais | poissons frais, sauce légumes, épices |
+Dakouin du chef | viande de mouton, sauce riche du chef |
+Monyo | poissons frits, sauce monyo, akassa |
+Poissons frits + attiéké | |
+Poulet yassa | poulet mariné au citron, oignons caramélisés |

@@ -39,7 +39,7 @@ jobs:
           "
 
       - name: Assembler le site
-        run: rsync -a --exclude .git --exclude .github --exclude _site ./ _site/ && ls _site
+        run: rsync -a --exclude .git --exclude .github --exclude _site --exclude nouveau-menu ./ _site/ && ls _site
 
       - name: Configurer Pages
         uses: actions/configure-pages@v5
