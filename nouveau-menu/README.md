@@ -9,12 +9,13 @@ Sources reçues du restaurant :
   fruits de mer, viandes, brochettes, nouveautés du chef, menu enfants ;
 - 26 novembre 2026 — 10 feuilles manuscrites : pizzas, cocktails, jus, boissons, glaces,
   crêpes, gaufres, gâteaux, boissons chaudes, chicha ;
-- 26 novembre 2026 — 2 captures d'écran d'un menu noir et or : chawarmas et burgers, avec
-  leurs prix (la capture des burgers est coupée à droite).
+- 26 novembre 2026 — 2 captures d'écran d'un menu noir et or : chawarmas et burgers (la
+  capture des burgers est coupée à droite). Leurs prix ne sont pas repris : le restaurant
+  inscrit lui-même ses prix à jour.
 
 | Fichier | Rôle |
 |---|---|
-| `KING-FOOD-nouveau-menu-v2-prix-a-completer.pdf` | **Le document à envoyer au restaurant** (6 pages). Pages 1 à 4 : le menu, 25 rubriques et 248 plats ; chaque prix inconnu est une case vide à remplir à l'écran (champ de saisie) ou à la main. Pages 5 et 6 : mode d'emploi, corrections déjà faites, 17 points à confirmer et 5 suggestions, avec cases à cocher et lignes de réponse. |
+| `KING-FOOD-nouveau-menu-v2-prix-a-completer.pdf` | **Le document à envoyer au restaurant** (6 pages). Pages 1 à 4 : le menu, 25 rubriques et 248 plats ; chaque prix est une case vide à remplir à l'écran (champ de saisie) ou à la main. Pages 5 et 6 : mode d'emploi, corrections déjà faites, 16 points à confirmer et 5 suggestions, avec cases à cocher et lignes de réponse. |
 | `nouveau-menu.txt` | Le contenu : une ligne par plat, `Nom \| Description \| Prix`. C'est ici qu'on corrige un plat ou qu'on saisit les prix. Les rubriques y sont dans l'ordre de lecture du menu. |
 | `outils/composer.py` | Met en page `nouveau-menu.txt` ; la répartition des rubriques par colonne est dans `PLAN`. |
 | `outils/questions.py` | Le texte des pages 5 et 6. Les numéros de plats cités sont retrouvés par leur nom. |
@@ -45,11 +46,11 @@ dont les numéros ne se suivent pas dans l'ordre de lecture.
 
 ```
 ## Burgers | @Sandwich / Assiette              ← rubrique à deux colonnes de prix
-Chicken burger | viande chicken, choux, laitue | 3500 / 4000
 Fish burger | laitue, tomate, poisson |        ← prix vides : deux cases à compléter
+Chicken burger | viande chicken, choux, laitue | 3500 / 4000   ← prix connus : imprimés
 
 ## Chawarmas | Cornichon au choix.             ← note affichée sous le titre
-Chawarma poulet | choux, frites, crème d'ail | 2500
+Chawarma poulet | choux, frites, crème d'ail |
 
 ## Brochettes & grillades
 Poulet KFC | | @Complet / Demi                 ← deux prix pour ce seul plat

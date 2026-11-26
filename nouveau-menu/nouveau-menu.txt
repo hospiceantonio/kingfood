@@ -1,6 +1,6 @@
 // KING FOOD — nouveau menu (version 2).
 // Sources : feuilles manuscrites du 24/11/2026 (7 feuilles) et du 26/11/2026 (10 feuilles) ;
-//           captures d'écran du menu noir et or reçues le 26/11/2026 (chawarmas et burgers, avec leurs prix).
+//           captures d'écran du menu noir et or reçues le 26/11/2026 (chawarmas et burgers).
 //
 // Une rubrique :  ## Titre | note éventuelle | @Format 1 / Format 2
 //   - « @… » sur la rubrique → deux colonnes de prix pour tous ses plats (prix écrits « 2000 / 2500 »)
@@ -62,38 +62,39 @@ Steak sub | émincé de bœuf, oignon, champignon, mayonnaise |
 Chicken sub | poulet, oignon, champignon, crème d'ail |
 Sandwich au thon | |
 
-// Captures d'écran du menu noir et or : noms, compositions et prix repris tels quels.
+// Captures d'écran du menu noir et or : noms et compositions repris tels quels.
+// Les prix des captures ne sont pas repris : le restaurant inscrit lui-même ses prix à jour (demande du 26/11).
 ## Chawarmas | Cornichon au choix. Chawarmas au poulet : ketchup ou sauce cocktail au choix.
-Chawarma végétarien | laitue, tomate, oignon, champignon, frites, sauce cocktail | 1500
-Chawarma frites | choux, frites, piment, ketchup | 1500
-Chawarma kafta viande | laitue, frites, sauce cocktail, viande kafta, piment | 1500
-Chawarma kafta viande + fromage | laitue, frites, sauce cocktail, piment, viande kafta, mozzarella | 2000
-Chawarma double kafta viande | laitue, frites, sauce cocktail, double viande kafta, piment | 2500
-Chawarma double kafta viande + fromage | laitue, frites, sauce cocktail, double viande kafta, piment, mozzarella | 3000
-Chawarma viande steak | laitue, frites, piment, sauce cocktail, viande steak | 2500
-Chawarma viande steak + fromage | laitue, frites, piment, sauce cocktail, viande steak, mozzarella | 3000
-Chawarma viande libanais | persil haché, viande steak, sauce tarator, oignon | 2500
-Chawarma taouk poisson | laitue, frites, crème d'ail, piment, poisson | 3000
-Chawarma taouk poulet | choux, frites, crème d'ail, piment, taouk poulet | 2500
-Chawarma poulet | choux, frites, crème d'ail, piment, poulet | 2500
-Chawarma poulet + fromage | choux, frites, crème d'ail, piment, poulet, fromage | 3000
-Chawarma kafta poulet | choux, frites, crème d'ail, piment, kafta poulet | 2000
-Chawarma double kafta poulet | choux, frites, crème d'ail, piment, double kafta poulet | 3000
-Chawarma kafta poulet + fromage | choux, frites, crème d'ail, piment, kafta poulet, mozzarella | 2500
-Double kafta poulet + fromage | choux, frites, crème d'ail, piment, double kafta poulet, mozzarella | 3500
-Chawarma suggestion du chef (King Food) | laitue, persil, oignon, tomate, frites, poulet, kafta viande, viande steak, sauce cocktail, vinaigrette, cornichon | 4000
+Chawarma végétarien | laitue, tomate, oignon, champignon, frites, sauce cocktail |
+Chawarma frites | choux, frites, piment, ketchup |
+Chawarma kafta viande | laitue, frites, sauce cocktail, viande kafta, piment |
+Chawarma kafta viande + fromage | laitue, frites, sauce cocktail, piment, viande kafta, mozzarella |
+Chawarma double kafta viande | laitue, frites, sauce cocktail, double viande kafta, piment |
+Chawarma double kafta viande + fromage | laitue, frites, sauce cocktail, double viande kafta, piment, mozzarella |
+Chawarma viande steak | laitue, frites, piment, sauce cocktail, viande steak |
+Chawarma viande steak + fromage | laitue, frites, piment, sauce cocktail, viande steak, mozzarella |
+Chawarma viande libanais | persil haché, viande steak, sauce tarator, oignon |
+Chawarma taouk poisson | laitue, frites, crème d'ail, piment, poisson |
+Chawarma taouk poulet | choux, frites, crème d'ail, piment, taouk poulet |
+Chawarma poulet | choux, frites, crème d'ail, piment, poulet |
+Chawarma poulet + fromage | choux, frites, crème d'ail, piment, poulet, fromage |
+Chawarma kafta poulet | choux, frites, crème d'ail, piment, kafta poulet |
+Chawarma double kafta poulet | choux, frites, crème d'ail, piment, double kafta poulet |
+Chawarma kafta poulet + fromage | choux, frites, crème d'ail, piment, kafta poulet, mozzarella |
+Double kafta poulet + fromage | choux, frites, crème d'ail, piment, double kafta poulet, mozzarella |
+Chawarma suggestion du chef (King Food) | laitue, persil, oignon, tomate, frites, poulet, kafta viande, viande steak, sauce cocktail, vinaigrette, cornichon |
 
-// Burgers 1 à 15 : capture d'écran (coupée à droite : prix et fin de composition illisibles à partir du 9e).
+// Burgers 1 à 15 : capture d'écran, coupée à droite (fin de composition illisible pour cinq burgers). Prix non repris, comme les chawarmas.
 // « Zinger burger » : feuille manuscrite du 24/11. Les deux autres burgers de cette feuille existent déjà dans la liste.
 ## Burgers | @Sandwich / Assiette
-Burger végétarien | laitue, tomate, choux, frites, sauce cocktail, champignon, oignon | 2000 / 2500
-Hamburger viande | viande burger, choux, laitue, tomate, frites, sauce cocktail | 3000 / 3500
-Chicken burger | viande chicken, choux, laitue, tomate, frites, sauce cocktail | 3500 / 4000
-Cheese burger | viande burger, choux, frites, laitue, tomate, sauce cocktail, fromage cheddar | 3500 / 4000
-Cheese chicken burger | viande chicken, choux, laitue, tomate, fromage cheddar, sauce cocktail | 4000 / 4500
-Double burger | laitue, tomate, double viande burger, choux, frites, sauce cocktail | 3500 / 4000
-Double chicken burger | laitue, tomate, double viande chicken, choux, frites, sauce cocktail | 4000 / 4500
-Double cheese burger | laitue, tomate, double viande burger, double cheddar, fromage, choux, frites, sauce cocktail | 4500 / 5000
+Burger végétarien | laitue, tomate, choux, frites, sauce cocktail, champignon, oignon |
+Hamburger viande | viande burger, choux, laitue, tomate, frites, sauce cocktail |
+Chicken burger | viande chicken, choux, laitue, tomate, frites, sauce cocktail |
+Cheese burger | viande burger, choux, frites, laitue, tomate, sauce cocktail, fromage cheddar |
+Cheese chicken burger | viande chicken, choux, laitue, tomate, fromage cheddar, sauce cocktail |
+Double burger | laitue, tomate, double viande burger, choux, frites, sauce cocktail |
+Double chicken burger | laitue, tomate, double viande chicken, choux, frites, sauce cocktail |
+Double cheese burger | laitue, tomate, double viande burger, double cheddar, fromage, choux, frites, sauce cocktail |
 Double chicken cheese burger | |
 Crispy burger BBQ | laitue, tomate, poulet crispy, choux, frites, sauce cocktail |
 Fish burger | laitue, tomate, fish, choux, frites, sauce cocktail |

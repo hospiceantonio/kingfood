@@ -24,6 +24,8 @@ COCKTAILS_DISPARUS = "Pink Banana, Milky Mango, Green or Red Moon, Papaye ou t'e
 # Noms de pizzas dont la lecture est incertaine : (clé du champ, nom retenu, ce qui est écrit)
 NOMS_PIZZAS = [("crazy", "Crazy Bun's"), ("capri", "Capri", "(écrit «\u00a0Capi\u00a0»)"), ("thonata", "Thonata", "(«\u00a0Thanata\u00a0»)"),
                ("miami", "Miami", "(«\u00a0Miani\u00a0»)"), ("triskell", "Triskell"), ("dg", "DG")]
+# Burgers dont la composition est coupée sur la capture d'écran reçue
+BURGERS_COUPES = ["Double chicken cheese burger", "Chilli cheese burger", "Burger King Food", "Hawaï burger", "American burger BBQ"]
 # Rubriques de plats cuisinés : c'est là qu'une description manquante gêne le client
 RUBRIQUES_CUISINE = ["Petit déjeuner", "Petit déjeuner oriental", "Nos entrées froides", "Entrées chaudes", "Sandwichs", "Burgers",
                      "Nos pâtes", "Fruits de mer", "Menu enfants", "Viandes rouges", "Brochettes & grillades", "Viandes blanches",
@@ -89,22 +91,23 @@ def pages(rubriques, tete, deco):
 
     deux_cases = [p for p in plats if p["formats"]]
     avec_prix = sum(1 for p in plats if p["prix"])
-    burgers = par_titre["Burgers"]["plats"]
-    coupes = [p for p in burgers if not p["prix"] and p["nom"] != "Zinger burger"]
+    coupes = [num("Burgers", nom) for nom in BURGERS_COUPES]
+    liste_coupes = ", ".join(map(str, coupes[:-1])) + f" et {coupes[-1]}"
     cuisine = [p for t in RUBRIQUES_CUISINE for p in par_titre[t]["plats"]]
     sans_desc = sum(1 for p in cuisine if not p["desc"])
     viandes_rouges = par_titre["Viandes rouges"]["plats"][0]
     crevettes = "Crevettes sautées à l'ail"
 
     # ================================================================ page 1 des questions
+    etape_prix_inscrits = (f'  <li><b>Prix déjà inscrits.</b> {avec_prix} plats portent déjà un prix&nbsp;: vérifiez-les.</li>\n'
+                           if avec_prix else "")
     liste_deux = ", ".join(str(p["num"]) for p in deux_cases[:-1]) + f' et {deux_cases[-1]["num"]}'
     col_mode = tete + '<div class="etiquette">Version 2 · à compléter et à renvoyer</div>' + titre("Mode d'emploi") + f'''
 <p class="note">Voici la version 2 du projet&nbsp;: vos nouvelles feuilles et vos captures d'écran y sont ajoutées. Le menu compte
 maintenant {nb} plats, numérotés de 1 à {nb}, pages 1 à 4.</p>
 <ol class="etapes">
   <li><b>Les prix.</b> Écrivez le prix de chaque plat dans la case placée avant le «&nbsp;F&nbsp;»&nbsp;: à l'écran en cliquant dans la case, ou à la main.</li>
-  <li><b>Prix déjà inscrits.</b> {avec_prix} plats (chawarmas et burgers) portent les prix de vos captures&nbsp;: vérifiez-les.</li>
-  <li><b>Deux prix.</b> Burgers&nbsp;: sandwich et assiette. Pizzas&nbsp;: petite et grande. N°&nbsp;{liste_deux}&nbsp;: deux cases sous le nom.</li>
+{etape_prix_inscrits}  <li><b>Deux prix.</b> Burgers&nbsp;: sandwich et assiette. Pizzas&nbsp;: petite et grande. N°&nbsp;{liste_deux}&nbsp;: deux cases sous le nom.</li>
   <li><b>Les questions.</b> Répondez aux points des pages 5 et 6&nbsp;: une case à cocher ou quelques mots suffisent.</li>
   <li><b>Le retour.</b> Renvoyez ce document rempli, ou une photo nette de chaque page.</li>
 </ol>
@@ -114,7 +117,7 @@ Attention, les numéros des plats ont changé.</div>'''
     col_fait = titre("Déjà fait") + f'''
 <ul class="fait">
   <li>L'orthographe est corrigée, sans changer les plats&nbsp;: champignon, maïs doux, émincé, Calzone, Margherita, Méditerranée, Toscane, Malgache…</li>
-  <li>Chawarmas et burgers&nbsp;: noms, compositions et prix sont repris de vos captures d'écran.</li>
+  <li>Chawarmas et burgers&nbsp;: noms et compositions sont repris de vos captures d'écran. Leurs prix sont laissés vides&nbsp;: vous inscrivez vos prix à jour.</li>
   <li>Pizzas&nbsp;: le mot «&nbsp;pizza&nbsp;» n'est plus répété devant chaque nom, et «&nbsp;fromage mozzarella&nbsp;» devient «&nbsp;mozzarella&nbsp;».</li>
   <li>Pizza Chicken&nbsp;: «&nbsp;poivron&nbsp;», écrit deux fois, n'apparaît qu'une fois.</li>
   <li>Les lignes barrées ne sont pas reprises&nbsp;: «&nbsp;Coca-Cola bouteille en verre&nbsp;» (deux lignes) et «&nbsp;Lapin à la moutarde&nbsp;».</li>
@@ -145,79 +148,75 @@ Attention, les numéros des plats ont changé.</div>'''
               + '<p class="serre">Dans quelle rubrique les garder&nbsp;?</p>' + reponse("q4_rubrique", "Rubrique où garder les plats en double", 1))
     col_24 = titre("À confirmer") + sous_titre("Vos feuilles du 24 novembre") + q1 + q2 + q3 + q4
 
-    q5 = bloc(5, "Prix des chawarmas et des burgers",
-              '<p>Les prix inscrits viennent de vos captures. Presque tous sont plus bas que sur l\'ancien menu imprimé&nbsp;: '
-              'chawarma végétarien 1500&nbsp;F contre 2000&nbsp;F, hamburger viande 3000&nbsp;F contre 3500&nbsp;F. Lesquels sont les bons&nbsp;?</p>'
-              + choix("q5", "Prix des chawarmas et burgers", ("captures", "Ceux des captures"), ("corriges", "Nous les corrigeons sur le menu")))
-    q6 = bloc(6, "Capture des burgers coupée",
-              f'<p>La capture est coupée à droite&nbsp;: les prix des n°&nbsp;{coupes[0]["num"]} à {coupes[-1]["num"]} et la fin de leur composition '
-              'sont illisibles. Elle porte aussi la mention «&nbsp;3 sur 4&nbsp;»&nbsp;: nous n\'avons reçu que deux pages sur quatre.</p>'
-              + choix("q6", "Capture des burgers", ("pages", "Nous renvoyons les quatre pages"), ("menu", "Nous écrivons les prix sur le menu")))
-    q7 = bloc(7, f'Burger végétarien (n°\u00a0{num("Burgers", "Burger végétarien")})',
+    q5 = bloc(5, "Capture des burgers coupée",
+              f'<p>La capture est coupée à droite&nbsp;: la composition des burgers n°&nbsp;{liste_coupes} est illisible. Elle porte aussi la mention '
+              '«&nbsp;3 sur 4&nbsp;»&nbsp;: nous n\'avons reçu que deux pages sur quatre.</p>'
+              + choix("q5", "Capture des burgers", ("pages", "Nous renvoyons les quatre pages"), ("sans", "Laisser ces burgers sans composition")))
+    q6 = bloc(6, f'Burger végétarien (n°\u00a0{num("Burgers", "Burger végétarien")})',
               '<p>Deux compositions. Feuille du 24 novembre&nbsp;: «&nbsp;aubergine, tomate, oignon, frites, cornichon&nbsp;». '
               'Capture&nbsp;: «&nbsp;laitue, tomate, choux, frites, sauce cocktail, champignon, oignon&nbsp;», retenue ici.</p>'
-              + choix("q7", "Composition du burger végétarien", ("capture", "Celle de la capture"), ("feuille", "Celle de la feuille")))
-    q8 = bloc(8, f'Zinger burger (n°\u00a0{num("Burgers", "Zinger burger")})',
+              + choix("q6", "Composition du burger végétarien", ("capture", "Celle de la capture"), ("feuille", "Celle de la feuille")))
+    q7 = bloc(7, f'Zinger burger (n°\u00a0{num("Burgers", "Zinger burger")})',
               '<p>Il figure sur votre feuille du 24 novembre, pas sur la capture. Faut-il le garder&nbsp;?</p>'
-              + choix("q8", "Zinger burger", ("garder", "Le garder"), ("retirer", "Le retirer"))
-              + '<p class="serre">Sa composition&nbsp;:</p>' + reponse("q8_composition", "Composition du Zinger burger", 1))
-    col_captures = titre("À confirmer (suite)") + sous_titre("Vos captures : chawarmas et burgers") + q5 + q6 + q7 + q8
+              + choix("q7", "Zinger burger", ("garder", "Le garder"), ("retirer", "Le retirer"))
+              + '<p class="serre">Sa composition&nbsp;:</p>' + reponse("q7_composition", "Composition du Zinger burger", 1))
+    col_captures = titre("À confirmer (suite)") + sous_titre("Vos captures : chawarmas et burgers") + q5 + q6 + q7
 
     page_a = colonnes(col_mode, col_fait + deco("toque", "c"), col_24 + deco("salade", "b"), col_captures + deco("burger", "a"))
 
     # ================================================================ page 2 des questions
     def rang_nom(cle, nom, note=""):
         return (f'<span class="rang-nom">{num("Pizzas", nom)} — {e(nom)}{f" <em>{e(note)}</em>" if note else ""}</span>'
-                + coche(f"q10_{cle}_ok", f"Pizza {nom} : bien lu") + ligne(f"q10_{cle}_nom", f"Bon nom à la place de {nom}"))
+                + coche(f"q9_{cle}_ok", f"Pizza {nom} : bien lu") + ligne(f"q9_{cle}_nom", f"Bon nom à la place de {nom}"))
 
-    q9 = bloc(9, "Deux tailles",
+    q8 = bloc(8, "Deux tailles",
               '<p>L\'ancien menu donnait deux prix par pizza, petite et grande. Nous avons prévu deux cases par pizza.</p>'
-              + choix("q9", "Tailles des pizzas", ("deux", "Oui, petite et grande"), ("une", "Non, une seule taille")))
-    q10 = bloc(10, "Six noms à confirmer",
+              + choix("q8", "Tailles des pizzas", ("deux", "Oui, petite et grande"), ("une", "Non, une seule taille")))
+    q9 = bloc(9, "Six noms à confirmer",
                '<p>Cochez si le nom est bien lu, sinon écrivez le bon.</p>'
                '<div class="grille-noms"><span></span><span class="tete-col">Bien lu</span><span class="tete-col gauche">Sinon</span>'
                + "".join(rang_nom(*n) for n in sorted(NOMS_PIZZAS, key=lambda n: num("Pizzas", n[1]))) + '</div>')
-    q11 = bloc(11, "Deux compositions à vérifier",
+    q10 = bloc(10, "Deux compositions à vérifier",
                '<p><b>Fruits de mer</b> (' + no("Pizzas", "Fruits de mer") + ')&nbsp;: aucun fromage n\'est écrit, alors que les autres pizzas ont de la mozzarella.</p>'
-               + choix("q11_fromage", "Pizza Fruits de mer", ("ajouter", "Ajouter « mozzarella »"), ("sans", "Sans fromage"))
+               + choix("q10_fromage", "Pizza Fruits de mer", ("ajouter", "Ajouter « mozzarella »"), ("sans", "Sans fromage"))
                + '<p class="serre"><b>Country</b> (' + no("Pizzas", "Country") + ')&nbsp;: nous lisons «&nbsp;émincé de poulet saucisse&nbsp;». Poulet et saucisse&nbsp;?</p>'
-               + '<div class="choix"><span class="option">' + coche("q11_country_oui", "Pizza Country : poulet et saucisse") + 'Oui</span>'
-               + '<span class="option large">Non&nbsp;:' + ligne("q11_country_non", "Pizza Country : bonne composition") + '</span></div>')
-    col_pizzas = titre("À confirmer : pizzas") + q9 + q10 + q11
+               + '<div class="choix"><span class="option">' + coche("q10_country_oui", "Pizza Country : poulet et saucisse") + 'Oui</span>'
+               + '<span class="option large">Non&nbsp;:' + ligne("q10_country_non", "Pizza Country : bonne composition") + '</span></div>')
+    col_pizzas = titre("À confirmer : pizzas") + q8 + q9 + q10
 
-    q12 = bloc(12, "Deux noms presque identiques",
+    q11 = bloc(11, "Deux noms presque identiques",
                '<p>«&nbsp;Chef&nbsp;» (' + no("Pizzas", "Chef") + ', au poulet) et «&nbsp;Suggestion du chef&nbsp;» (' + no("Pizzas", "Suggestion du chef")
                + ', au bœuf) risquent d\'être confondues à la commande.</p>'
-               + '<div class="choix"><span class="option">' + coche("q12_garder", "Pizzas Chef et Suggestion du chef : garder les deux noms") + 'Garder les deux noms</span></div>'
-               + '<div class="choix"><span class="option large">' + coche("q12_renommer", "Renommer une des deux pizzas") + 'Renommer&nbsp;:'
-               + ligne("q12_nom", "Nouveau nom d'une des deux pizzas") + '</span></div>')
-    q13 = bloc(13, "Pizzas de l'ancien menu",
+               + '<div class="choix"><span class="option">' + coche("q11_garder", "Pizzas Chef et Suggestion du chef : garder les deux noms") + 'Garder les deux noms</span></div>'
+               + '<div class="choix"><span class="option large">' + coche("q11_renommer", "Renommer une des deux pizzas") + 'Renommer&nbsp;:'
+               + ligne("q11_nom", "Nouveau nom d'une des deux pizzas") + '</span></div>')
+    q12 = bloc(12, "Pizzas de l'ancien menu",
                f'<p>Cinq pizzas de l\'ancien menu ne sont plus sur vos feuilles&nbsp;: {e(PIZZAS_DISPARUES)}.</p>'
-               + choix("q13", "Pizzas absentes des nouvelles feuilles", ("supprimees", "Elles sont supprimées"), ("garder", "Les garder")))
-    q14 = bloc(14, "Cocktails de l'ancien menu",
+               + choix("q12", "Pizzas absentes des nouvelles feuilles", ("supprimees", "Elles sont supprimées"), ("garder", "Les garder")))
+    q13 = bloc(13, "Cocktails de l'ancien menu",
                f'<p>Six cocktails ne sont plus sur vos feuilles&nbsp;: {e(COCKTAILS_DISPARUS)}.</p>'
-               + choix("q14", "Cocktails absents des nouvelles feuilles", ("supprimes", "Ils sont supprimés"), ("garder", "Les garder")))
-    q15 = bloc(15, "Boissons : trois noms",
+               + choix("q13", "Cocktails absents des nouvelles feuilles", ("supprimes", "Ils sont supprimés"), ("garder", "Les garder")))
+    q14 = bloc(14, "Boissons : trois noms",
                '<p>Vos feuilles disent «&nbsp;Extra&nbsp;» (' + no("Boissons", "Extra") + ') et «&nbsp;Énergie&nbsp;» (' + no("Boissons", "Énergie")
                + ')&nbsp;; l\'ancien menu disait «&nbsp;Jus Extra&nbsp;» et «&nbsp;Flash Énergie&nbsp;». Quels noms imprimer&nbsp;?</p>'
-               + reponse("q15_noms", "Noms à imprimer pour Extra et Énergie", 1)
+               + reponse("q14_noms", "Noms à imprimer pour Extra et Énergie", 1)
                + '<p class="serre">«&nbsp;Frisco&nbsp;» n\'est plus sur la liste&nbsp;:</p>'
-               + choix("q15_frisco", "Frisco", ("supprime", "Supprimé"), ("garder", "À garder")))
-    col_suite = titre("Pizzas, boissons") + q12 + q13 + q14 + q15
+               + choix("q14_frisco", "Frisco", ("supprime", "Supprimé"), ("garder", "À garder")))
+    col_suite = titre("Pizzas, boissons") + q11 + q12 + q13 + q14
 
     grille = '<div class="grille"><span></span><span class="tete-col">Garder</span><span class="tete-col">Supprimer</span>' + "".join(
-        f'<span>{e(r)}</span>' + coche(f"q17_{i + 1}_garder", f"{r} : garder") + coche(f"q17_{i + 1}_supprimer", f"{r} : supprimer")
+        f'<span>{e(r)}</span>' + coche(f"q16_{i + 1}_garder", f"{r} : garder") + coche(f"q16_{i + 1}_supprimer", f"{r} : supprimer")
         for i, r in enumerate(RUBRIQUES_ABSENTES)) + '</div>'
-    q16 = bloc(16, "Prix des desserts et des boissons",
+    q15 = bloc(15, "Prix des desserts et des boissons",
                '<p>Crêpes, gaufres, gâteaux, glaces, jus, boissons chaudes et chicha sont les mêmes que sur l\'ancien menu imprimé. '
                'Faut-il reprendre ses prix&nbsp;?</p>'
-               + choix("q16", "Prix des desserts et boissons", ("anciens", "Oui, reprendre les anciens prix"), ("nouveaux", "Non, nous écrivons les nouveaux")))
-    q17 = bloc(17, "Rubriques encore absentes",
+               + choix("q15", "Prix des desserts et boissons", ("anciens", "Oui, reprendre les anciens prix"), ("nouveaux", "Non, nous écrivons les nouveaux")))
+    q16 = bloc(16, "Rubriques encore absentes",
                '<p>Aucune feuille ne parle de ces rubriques de l\'ancien menu. Faut-il les garder comme avant, ou les supprimer&nbsp;?</p>' + grille
                + '<p class="serre">Sur vos photos, on aperçoit d\'autres feuilles sous les piles&nbsp;: «&nbsp;choukouya&nbsp;», «&nbsp;ailerons de dinde&nbsp;», '
                '«&nbsp;Africains&nbsp;», des ventes au kilo. Font-elles partie du menu&nbsp;?</p>'
-               + choix("q17_feuilles", "Feuilles aperçues sur les photos", ("envoi", "Oui, nous les envoyons"), ("non", "Non")))
-    col_ancien = titre("Ancien menu") + q16 + q17
+               + choix("q16_feuilles", "Feuilles aperçues sur les photos", ("envoi", "Oui, nous les envoyons"), ("non", "Non")))
+    col_ancien = titre("Ancien menu") + q15 + q16
 
     sa = bloc("A", "Accompagnements",
               '<p>L\'ancien menu les listait&nbsp;: riz, frites, aloco, attiéké, pâte… Nous suggérons de les rappeler, en disant s\'ils sont compris dans le prix.</p>'
