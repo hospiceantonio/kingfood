@@ -3,11 +3,12 @@
 dans la présentation de l'ancien menu imprimé : cartouches jaunes, plats numérotés,
 descriptions en rouge, points de conduite jusqu'au prix.
 
-    python3 outils/composer.py                    → menu-a-completer.html (menu + page de questions)
+    python3 outils/composer.py                    → menu-a-completer.html (menu + pages de questions)
     python3 outils/composer.py --sans-questions   → le menu seul
+    python3 outils/composer.py --mesure           → une rubrique par colonne, pour mesurer.js
 
 Le contenu vient de nouveau-menu.txt ; la répartition en colonnes est dans PLAN.
-La page de questions destinée au restaurant est décrite dans questions.py."""
+Les pages de questions destinées au restaurant sont décrites dans questions.py."""
 import html
 import pathlib
 import re
@@ -19,19 +20,32 @@ import questions
 ICI = pathlib.Path(__file__).resolve().parent.parent
 SOURCE = ICI / "nouveau-menu.txt"
 SORTIE = ICI / "menu-a-completer.html"
-MENTION = "KING FOOD · Projet de nouveau menu · Prix à compléter · 24 novembre 2026"
+MENTION = "KING FOOD · Projet de nouveau menu · Version 2 · Prix à compléter · 26 novembre 2026"
 
-# Répartition : 2 pages × 4 colonnes. Les blocs « deco » sont élastiques : ils occupent
-# la hauteur laissée libre par les rubriques de leur colonne.
+# Répartition : 4 colonnes par page. ("section", titre) place une rubrique entière ;
+# ("section", titre, début, fin) n'en place qu'une tranche de plats (la suite porte « (suite) »).
+# Les blocs « deco » sont élastiques : ils occupent la hauteur laissée libre dans leur colonne.
 PLAN = [
-    [("tete",), ("section", "Petit déjeuner"), ("deco", "tasse", "a")],
+    # page 1 — petits déjeuners, entrées, sandwichs
+    [("tete",), ("section", "Petit déjeuner"), ("section", "Petit déjeuner oriental"), ("deco", "tasse", "a")],
     [("section", "Nos entrées froides"), ("deco", "salade", "b")],
     [("section", "Entrées chaudes"), ("deco", "soupe", "c")],
-    [("section", "Petit déjeuner oriental"), ("section", "Burgers"), ("deco", "burger", "a"), ("section", "Nos pâtes")],
-    [("section", "Fruits de mer"), ("deco", "poisson", "b"), ("section", "Menu enfants")],
-    [("section", "Sandwichs"), ("deco", "frites", "c"), ("section", "Viandes rouges")],
-    [("section", "Brochettes & grillades"), ("deco", "brochette", "a"), ("section", "Viandes blanches")],
-    [("section", "Nouveautés du chef"), ("deco", "toque", "b")],
+    [("section", "Sandwichs"), ("section", "Chawarmas", 0, 7)],
+    # page 2 — chawarmas, burgers, pizzas
+    [("section", "Chawarmas", 7, None), ("deco", "frites", "a")],
+    [("section", "Burgers")],
+    [("section", "Pizzas", 0, 16)],
+    [("section", "Pizzas", 16, None)],
+    # page 3 — plats, menu enfants, desserts
+    [("section", "Nos pâtes"), ("section", "Fruits de mer"), ("section", "Menu enfants")],
+    [("section", "Viandes rouges"), ("section", "Brochettes & grillades"), ("deco", "brochette", "c")],
+    [("section", "Viandes blanches"), ("section", "Nouveautés du chef"), ("deco", "toque", "a")],
+    [("section", "Crêpes"), ("section", "Gaufres"), ("section", "Gâteaux"), ("section", "Glaces"), ("deco", "glace", "b")],
+    # page 4 — cocktails, jus, boissons, chicha
+    [("section", "Cocktails", 0, 18)],
+    [("section", "Cocktails", 18, None), ("deco", "verre", "c")],
+    [("section", "Jus nature"), ("section", "Jus mixte"), ("section", "Boissons chaudes"), ("deco", "tasse", "a")],
+    [("section", "Boissons"), ("section", "Chicha"), ("deco", "bouteille", "b")],
 ]
 
 J, R, N = "#FDC40F", "#C8393B", "#111111"   # jaune, rouge, noir de la charte
@@ -65,6 +79,16 @@ ICONES = {
              f'<ellipse cx="60" cy="42" rx="25" ry="19" transform="rotate(-38 60 42)" fill="{J}"/><path d="M54 32c6-5 15-5 21 1" stroke-width="2.4"/>',
     "steak": f'<path d="M20 46c0-18 22-26 38-20c16-6 30 10 24 28c-4 16-24 26-42 20c-12-4-20-14-20-28z" fill="{R}"/>'
              f'<path d="M36 46c6-8 16-8 22-1M40 60c8 6 20 4 26-4" stroke="#fff" stroke-width="2.8"/><circle cx="66" cy="40" r="5" fill="#fff"/>',
+    "glace": f'<path d="M35 48L50 90L65 48z" fill="{J}"/><path d="M41 60l15-9M46 72l11-7" stroke-width="2.4"/>'
+             f'<circle cx="50" cy="34" r="18" fill="#fff"/><path d="M38 30c5-8 19-8 24 0" stroke="{R}"/><circle cx="50" cy="12" r="4.5" fill="{R}"/>',
+    "bouteille": f'<path d="M44 12h12v14c0 8 10 10 10 22v36a4 4 0 0 1-4 4H38a4 4 0 0 1-4-4V48c0-12 10-14 10-22z" fill="{J}"/>'
+                 f'<path d="M34 56h32v16H34z" fill="#fff"/><path d="M43 11h14" stroke="{R}" stroke-width="5"/>',
+    "pizza": f'<path d="M50 88L18 30q32-18 64 0z" fill="{J}"/><path d="M18 30q32-18 64 0" stroke-width="5.5"/>'
+             f'<circle cx="41" cy="42" r="5.5" fill="{R}"/><circle cx="59" cy="46" r="5.5" fill="{R}"/><circle cx="50" cy="64" r="5" fill="{R}"/>',
+    "verre": f'<path d="M27 24h46L50 54z" fill="{J}"/><path d="M50 54v28M36 86h28"/><path d="M58 34L78 10" stroke="{R}"/>'
+             f'<circle cx="41" cy="33" r="4.5" fill="{R}"/>',
+    "gateau": f'<path d="M31 54h38l-6 32H37z" fill="{J}"/><path d="M41 60v20M50 60v20M59 60v20" stroke-width="2.2"/>'
+              f'<path d="M27 54c-5-13 6-22 15-18c3-12 23-11 23 2c10-2 13 9 9 16z" fill="#fff"/><circle cx="50" cy="19" r="4.6" fill="{R}"/>',
     "toque": f'<path d="M30 58c-16-2-16-24 0-26c2-14 22-16 28-4c12-8 28 6 16 22c-1 3-4 6-4 8v20H30z" fill="#fff"/>'
              f'<path d="M30 64h40v14H30z" fill="{J}"/><path d="M42 46v12M50 44v14M58 46v12" stroke-width="2.4"/>',
 }
@@ -87,25 +111,37 @@ def slug(texte):
 
 
 def lire(source):
-    """nouveau-menu.txt → liste de rubriques ; les plats sont numérotés dans l'ordre."""
-    rubriques, numero = [], 0
+    """nouveau-menu.txt → liste de rubriques ; les plats sont numérotés dans l'ordre du fichier."""
+    rubriques, numero, cles = [], 0, set()
     for n, brut in enumerate(source.read_text(encoding="utf-8").splitlines(), 1):
         ligne = brut.strip()
         if not ligne or ligne.startswith("//"):
             continue
+        champs = [c.strip() for c in ligne.lstrip("#").split("|")]
         if ligne.startswith("##"):
-            rubriques.append({"titre": ligne[2:].strip(), "plats": []})
+            r = {"titre": champs[0], "note": "", "formats": [], "plats": []}
+            for c in champs[1:]:
+                if c.startswith("@"):
+                    r["formats"] = [f.strip() for f in c[1:].split("/")]
+                elif c:
+                    r["note"] = c
+            rubriques.append(r)
             continue
-        champs = [c.strip() for c in ligne.split("|")]
         if not rubriques or not champs[0]:
             raise SystemExit(f"nouveau-menu.txt, ligne {n} : plat sans rubrique ou sans nom")
         champs += [""] * (4 - len(champs))
         numero += 1
-        plat = {"num": numero, "nom": champs[0], "desc": champs[1], "formats": [], "prix": champs[2]}
+        r = rubriques[-1]
+        # « cle » identifie le plat indépendamment de son numéro : elle nomme les champs du PDF
+        plat = {"num": numero, "nom": champs[0], "desc": champs[1], "formats": [], "prix": champs[2],
+                "cle": f'{slug(r["titre"])}__{slug(champs[0])}'}
         if champs[2].startswith("@"):
             plat["formats"] = [f.strip() for f in champs[2][1:].split("/")]
             plat["prix"] = champs[3]
-        rubriques[-1]["plats"].append(plat)
+        if plat["cle"] in cles:
+            raise SystemExit(f"nouveau-menu.txt, ligne {n} : « {champs[0]} » figure deux fois dans « {r['titre']} »")
+        cles.add(plat["cle"])
+        r["plats"].append(plat)
     return rubriques
 
 
@@ -114,17 +150,26 @@ def case_prix(plat, fmt, valeur):
     e = html.escape
     if valeur:
         return f'<span class="prix">{e(valeur)}&nbsp;F</span>'
-    nom = f'prix_{plat["num"]:03d}' + (f'_{slug(fmt)}' if fmt else "")
+    nom = f'prix__{plat["cle"]}' + (f'__{slug(fmt)}' if fmt else "")
     libelle = f'Prix du n° {plat["num"]} — {plat["nom"]}' + (f' ({fmt})' if fmt else "")
     return (f'<span class="prix"><span class="blanc" data-champ="{nom}" data-libelle="{e(libelle, quote=True)}"></span>'
             '<span class="f">F</span></span>')
 
 
-def rendu_plat(p):
+def prix_par_format(plat, formats):
+    prix = [x.strip() for x in plat["prix"].split("/")] if plat["prix"] else []
+    return prix + [""] * (len(formats) - len(prix))
+
+
+def rendu_plat(p, formats_rubrique=()):
     e = html.escape
     nom = f'<span class="nom"><span class="num">{p["num"]}&nbsp;-</span> {e(p["nom"])}</span>'
-    if p["formats"]:
-        prix = [x.strip() for x in p["prix"].split("/")] if p["prix"] else [""] * len(p["formats"])
+    if formats_rubrique:                      # deux colonnes de prix, alignées sous les en-têtes de la rubrique
+        prix = prix_par_format(p, formats_rubrique)
+        cellules = "".join(f'<span class="cellule">{case_prix(p, f, prix[i])}</span>' for i, f in enumerate(formats_rubrique))
+        corps = f'<div class="ligne">{nom}<span class="suite double"><span class="points"></span>{cellules}</span></div>'
+    elif p["formats"]:                        # deux prix pour ce seul plat, sur une ligne à part
+        prix = prix_par_format(p, p["formats"])
         formats = "".join(
             f'<span class="fmt"><span class="fmt-nom">{e(f)}</span><span class="points"></span>{case_prix(p, f, prix[i])}</span>'
             for i, f in enumerate(p["formats"]))
@@ -136,14 +181,21 @@ def rendu_plat(p):
     return f'<div class="plat">{corps}</div>'
 
 
-def rendu_section(r):
+def rendu_section(r, debut=0, fin=None):
+    """Une rubrique, ou la tranche [debut:fin] de ses plats (la suite d'une rubrique répartie sur deux colonnes)."""
     e = html.escape
+    libelle = r["titre"] + (" (suite)" if debut else "")
     if slug(r["titre"]) == "menu-enfants":      # pastille rouge, comme sur l'ancien menu
         mots = e(r["titre"]).upper().split(" ", 1)
         titre = (f'<div class="titre-enfants"><div class="pastille">{GRIBOUILLIS}<span>{mots[0]}<br>{mots[1]}</span></div></div>')
     else:
-        titre = f'<h2 class="titre"><span>{e(r["titre"])}</span></h2>'
-    return f'<section class="rubrique" id="{slug(r["titre"])}">{titre}<div class="plats">{"".join(rendu_plat(p) for p in r["plats"])}</div></section>'
+        titre = f'<h2 class="titre"><span>{e(libelle)}</span></h2>'
+    note = f'<p class="note-rubrique">{e(r["note"])}</p>' if r["note"] and not debut else ""
+    entetes = ('<div class="entetes">' + "".join(f"<span>{e(f)}</span>" for f in r["formats"]) + '</div>') if r["formats"] else ""
+    plats = "".join(rendu_plat(p, r["formats"]) for p in r["plats"][debut:fin])
+    ident = slug(r["titre"]) + (f"-{debut}" if debut else "")
+    return (f'<section class="rubrique" id="{ident}" data-titre="{e(r["titre"], quote=True)}">{titre}{note}{entetes}'
+            f'<div class="plats">{plats}</div></section>')
 
 
 def rendu_deco(icone, variante):
@@ -157,7 +209,7 @@ TETE = ('<div class="tete"><img src="../qr/logo-hd.png" alt=""><div class="tete-
 
 CSS = """
 :root{--jaune:#FDC40F;--rouge:#C8393B;--noir:#111;--marine:#2B2D4E;
-  --plat:13.4pt;--desc:11pt;--titre:42pt;--bandeau:16mm}
+  --plat:13.3pt;--desc:10.6pt;--titre:42pt;--bandeau:16mm}
 @page{size:420mm 297mm;margin:0}
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;background:#fff}
@@ -190,7 +242,7 @@ body{font-family:'KF Texte',Arial,sans-serif;color:var(--noir);-webkit-print-col
 .pastille .gribouillis{position:absolute;inset:-2.2mm;width:auto;height:auto}
 
 /* Plats : « 12 - Nom ........ prix F », description en rouge entre parenthèses */
-.plat{padding:.95mm 0;break-inside:avoid}
+.plat{padding:.72mm 0;break-inside:avoid}
 .ligne{display:flex;flex-wrap:wrap;align-items:flex-end;font-size:var(--plat);font-weight:700;line-height:1.22}
 .nom{flex:0 1 auto;min-width:0;max-width:100%}
 .num{white-space:nowrap}
@@ -200,12 +252,25 @@ body{font-family:'KF Texte',Arial,sans-serif;color:var(--noir);-webkit-print-col
 .points{flex:1 1 3mm;min-width:3mm;margin:0 1.1mm .34em;border-bottom:.55mm dotted var(--noir)}
 .prix{flex:0 0 auto;white-space:nowrap;font-weight:700;display:inline-flex;align-items:flex-end}
 .blanc{display:inline-block;width:13.5mm;height:5.4mm;margin-right:1mm;border-bottom:.25mm solid #9a9a9a}
-.desc{margin:.25mm 0 0 8.5mm;font-size:var(--desc);line-height:1.24;color:var(--rouge);font-weight:400}
+.desc{margin:.15mm 0 0 8.5mm;font-size:var(--desc);line-height:1.2;color:var(--rouge);font-weight:400}
 .formats{display:flex;gap:4mm;margin:.6mm 0 .4mm 7mm;font-size:calc(var(--plat) - 1.2pt);font-weight:700}
 .fmt{flex:1;display:flex;align-items:flex-end;min-width:0}
 .fmt-nom{font-family:'KF Script',cursive;font-weight:400;font-size:18pt;line-height:.9;transform:translateY(.7mm)}
 .fmt .points{flex-basis:3mm;min-width:3mm}
 .fmt .blanc{width:11.5mm}
+
+/* Note sous le titre d'une rubrique */
+.note-rubrique{margin:-.8mm 0 1.4mm;font-size:10.2pt;line-height:1.28;color:#444;font-style:italic;text-align:center}
+
+/* Rubrique à deux colonnes de prix (burgers : sandwich / assiette ; pizzas : petite / grande) */
+:root{--cell:17.4mm;--ecart:1.2mm}
+.entetes{display:flex;justify-content:flex-end;gap:var(--ecart);margin:-.4mm 0 .2mm;font-size:8.4pt;font-weight:700;
+  text-transform:uppercase;letter-spacing:.04em;color:#555}
+.entetes span{flex:0 0 var(--cell);text-align:center}
+.suite.double{flex-basis:calc(2*var(--cell) + var(--ecart) + 5mm);min-width:calc(2*var(--cell) + var(--ecart) + 5mm)}
+.cellule{flex:0 0 var(--cell);display:inline-flex;justify-content:flex-end;align-items:flex-end}
+.cellule + .cellule{margin-left:var(--ecart)}
+.cellule .blanc{width:11.6mm}
 
 /* En-tête de la première colonne */
 .tete{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;text-align:center;padding:7mm 0 6.5mm}
@@ -215,7 +280,7 @@ body{font-family:'KF Texte',Arial,sans-serif;color:var(--noir);-webkit-print-col
 .tete-devise{font-size:12pt;font-weight:700;margin-top:1.2mm}
 
 /* Décors élastiques : disque illustré + traits manuscrits */
-.deco{flex:1 1 0;min-height:34mm;display:flex;align-items:center;justify-content:center;padding:3.5mm 0}
+.deco{flex:1 1 0;min-height:28mm;display:flex;align-items:center;justify-content:center;padding:3mm 0}
 .scene{position:relative;height:100%;max-height:66mm;aspect-ratio:1.5;isolation:isolate}
 .disque{position:absolute;top:0;bottom:0;left:50%;aspect-ratio:1;transform:translateX(-50%);border-radius:50%;background:#FFF4C7;
   border:.7mm solid var(--marine);display:grid;place-items:center}
@@ -251,32 +316,70 @@ document.fonts.ready.then(() => {
 """
 
 
-def composer(avec_questions=True):
+def tranche(bloc_plan, rubrique):
+    debut = bloc_plan[2] if len(bloc_plan) > 2 else 0
+    fin = bloc_plan[3] if len(bloc_plan) > 3 and bloc_plan[3] is not None else len(rubrique["plats"])
+    return debut, fin
+
+
+def verifier_plan(plan, rubriques):
+    """Chaque plat de chaque rubrique doit être placé une fois et une seule."""
+    places = {t: [] for t in rubriques}
+    for col in plan:
+        for b in col:
+            if b[0] == "section":
+                if b[1] not in rubriques:
+                    raise SystemExit(f"PLAN : rubrique inconnue → {b[1]}")
+                places[b[1]].extend(range(*tranche(b, rubriques[b[1]])))
+    for t, r in rubriques.items():
+        if places[t] != list(range(len(r["plats"]))):
+            raise SystemExit(f"PLAN : « {t} » mal placée ({len(places[t])} plats placés sur {len(r['plats'])}, ou dans le désordre)")
+    # Les numéros doivent se suivre dans l'ordre de lecture : colonne après colonne, de haut en bas.
+    lus = [rubriques[b[1]]["plats"][i]["num"] for col in plan for b in col if b[0] == "section"
+           for i in range(*tranche(b, rubriques[b[1]]))]
+    if lus != sorted(lus):
+        k = next(i for i in range(1, len(lus)) if lus[i] < lus[i - 1])
+        raise SystemExit(f"PLAN : la numérotation recule (n° {lus[k - 1]} puis n° {lus[k]}) — remettre nouveau-menu.txt dans l'ordre du PLAN")
+
+
+def composer(avec_questions=True, mesure=False):
     liste = lire(SOURCE)
     rubriques = {r["titre"]: r for r in liste}
-    placees = [b[1] for col in PLAN for b in col if b[0] == "section"]
-    manquantes = [t for t in rubriques if t not in placees]
-    if manquantes or len(set(placees)) != len(placees):
-        raise SystemExit(f"PLAN incomplet ou en double : {manquantes or placees}")
-    pages, total = [], len(PLAN) // 4 + (1 if avec_questions else 0)
-    for p in range(0, len(PLAN), 4):
+    plan = [[("section", t)] for t in rubriques] if mesure else PLAN
+    plan = plan + [[] for _ in range(-len(plan) % 4)]            # pages complètes de 4 colonnes
+    verifier_plan(plan, rubriques)
+    nb_menu = len(plan) // 4
+    pages_q = [] if mesure or not avec_questions else questions.pages(liste, TETE, rendu_deco)
+    total = nb_menu + len(pages_q)
+
+    def enveloppe(colonnes, numero, classe=""):
+        return (f'<div class="page{classe}"><div class="filet-jaune"></div><div class="cadre">{colonnes}</div>'
+                f'<div class="mention">{html.escape(MENTION)}</div><div class="folio">Page {numero} / {total}</div></div>')
+
+    pages = []
+    for p in range(nb_menu):
         cols = []
-        for col in PLAN[p:p + 4]:
+        for col in plan[4 * p:4 * p + 4]:
             blocs = []
             for b in col:
-                blocs.append(TETE if b[0] == "tete" else rendu_section(rubriques[b[1]]) if b[0] == "section" else rendu_deco(b[1], b[2]))
+                if b[0] == "tete":
+                    blocs.append(TETE)
+                elif b[0] == "deco":
+                    blocs.append(rendu_deco(b[1], b[2]))
+                else:
+                    r = rubriques[b[1]]
+                    blocs.append(rendu_section(r, *tranche(b, r)))
             cols.append(f'<div class="col">{"".join(blocs)}</div>')
-        folio = f'Page {p // 4 + 1} / {total}'
-        pages.append(f'<div class="page"><div class="filet-jaune"></div><div class="cadre">{"".join(cols)}</div>'
-                     f'<div class="mention">{html.escape(MENTION)}</div><div class="folio">{folio}</div></div>')
-    if avec_questions:
-        pages.append(questions.rendu_page(liste, TETE, MENTION, f'Page {total} / {total}', rendu_deco))
+        pages.append(enveloppe("".join(cols), p + 1))
+    for i, colonnes in enumerate(pages_q):
+        pages.append(enveloppe(colonnes, nb_menu + i + 1, " page-notes"))
     doc = ('<!DOCTYPE html>\n<html lang="fr">\n<head>\n<meta charset="UTF-8">\n<title>KING FOOD — nouveau menu (prix à compléter)</title>\n'
-           '<link rel="stylesheet" href="polices-menu.css">\n<style>' + CSS + questions.CSS + '</style>\n</head>\n<body>\n' + "\n".join(pages) + '\n<script>' + SCRIPT + '</script>\n</body>\n</html>\n')
+           '<link rel="stylesheet" href="polices-menu.css">\n<style>' + CSS + questions.CSS + '</style>\n</head>\n<body>\n'
+           + "\n".join(pages) + '\n<script>' + SCRIPT + '</script>\n</body>\n</html>\n')
     SORTIE.write_text(doc, encoding="utf-8")
-    nb = sum(len(r["plats"]) for r in rubriques.values())
-    print(f"{SORTIE.name} : {len(rubriques)} rubriques, {nb} plats, {len(pages)} pages")
+    nb = sum(len(r["plats"]) for r in liste)
+    print(f"{SORTIE.name} : {len(liste)} rubriques, {nb} plats, {nb_menu} pages de menu + {len(pages_q)} de questions")
 
 
 if __name__ == "__main__":
-    composer(avec_questions="--sans-questions" not in sys.argv[1:])
+    composer(avec_questions="--sans-questions" not in sys.argv[1:], mesure="--mesure" in sys.argv[1:])

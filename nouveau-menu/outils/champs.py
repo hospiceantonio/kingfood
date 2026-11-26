@@ -39,14 +39,15 @@ def ajouter(entree, champs_json, sortie):
         else:                                             # prix : court, aligné à droite contre le « F »
             w.field_type = pymupdf.PDF_WIDGET_TYPE_TEXT
             w.rect = pymupdf.Rect(x0, y0 - 1.5, x1, y1 - 0.5)
-            w.text_font, w.text_fontsize = "HeBo", 11.5
+            # case étroite (rubrique à deux colonnes de prix) : corps réduit pour qu'un prix à cinq chiffres tienne
+            w.text_font, w.text_fontsize = "HeBo", 11.5 if x1 - x0 >= 36 else 10.5
             w.text_maxlen = 8
             w.field_value = ""
         page.add_widget(w)
         if c["type"] == "prix":
             doc.xref_set_key(w.xref, "Q", "2")
             w.update()
-    doc.set_metadata({"title": "KING FOOD — nouveau menu (prix à compléter)", "author": "KING FOOD",
+    doc.set_metadata({"title": "KING FOOD — nouveau menu, version 2 (prix à compléter)", "author": "KING FOOD",
                       "subject": "Projet de nouveau menu : prix et réponses à saisir dans les cases, ou à écrire à la main."})
     doc.save(sortie, garbage=3, deflate=True)
     compte = {t: sum(1 for c in champs if c["type"] == t) for t in ("prix", "texte", "case")}

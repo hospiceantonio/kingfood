@@ -1,7 +1,12 @@
-// KING FOOD — nouveau menu, transcrit des 7 feuilles manuscrites reçues le 24/11/2026.
-// Une ligne par plat :  Nom | Description | Prix
-//   - prix vide            → case à compléter sur le PDF
-//   - @Complet / Demi      → deux cases à compléter (deux formats)
+// KING FOOD — nouveau menu (version 2).
+// Sources : feuilles manuscrites du 24/11/2026 (7 feuilles) et du 26/11/2026 (10 feuilles) ;
+//           captures d'écran du menu noir et or reçues le 26/11/2026 (chawarmas et burgers, avec leurs prix).
+//
+// Une rubrique :  ## Titre | note éventuelle | @Format 1 / Format 2
+//   - « @… » sur la rubrique → deux colonnes de prix pour tous ses plats (prix écrits « 2000 / 2500 »)
+// Un plat :       Nom | Description | Prix
+//   - prix vide → case à compléter sur le PDF
+//   - « @Complet / Demi » à la place du prix → deux cases pour ce seul plat (prix éventuels en 4e champ)
 // Les numéros des plats sont attribués automatiquement, dans l'ordre du fichier.
 
 ## Petit déjeuner
@@ -13,6 +18,13 @@ Omelette au fromage | |
 Omelette au jambon | |
 Omelette forestière | tomate, oignon, persil, champignon |
 Omelette parmentière | pomme de terre, fromage, omelette nature |
+
+## Petit déjeuner oriental
+Œuf brouillé à la viande | |
+Sandwich samaké | |
+Sandwich malaké végétarien | |
+Fatayer à la viande | 6 pièces |
+Rouleau aux fromages | |
 
 ## Nos entrées froides
 Salade César | laitue, tranches de poulet, parmesan, ail, jambon |
@@ -40,17 +52,91 @@ Salade tiède de gambas à l'ananas | laitue, ananas, gambas, sauce vinaigrette 
 Crevettes sautées aux nouilles | crevettes, champignons chinois, nouilles, carottes, haricots verts |
 Salade langue de bœuf | laitue, tomate fraîche, oignon, amandes grillées, langue de bœuf |
 
-## Petit déjeuner oriental
-Œuf brouillé à la viande | |
-Sandwich samaké | |
-Sandwich malaké végétarien | |
-Fatayer à la viande | 6 pièces |
-Rouleau aux fromages | |
+## Sandwichs
+Panini caprese | tomates, mozzarella |
+Panini Vénito | poulet, fromage, tomates |
+Panini rôti de bœuf | rôti de bœuf, légumes, sauce maison |
+Bol de frites | |
+Crispy poulet | crispy, choux, crème d'ail, ketchup |
+Steak sub | émincé de bœuf, oignon, champignon, mayonnaise |
+Chicken sub | poulet, oignon, champignon, crème d'ail |
+Sandwich au thon | |
 
-## Burgers
+// Captures d'écran du menu noir et or : noms, compositions et prix repris tels quels.
+## Chawarmas | Cornichon au choix. Chawarmas au poulet : ketchup ou sauce cocktail au choix.
+Chawarma végétarien | laitue, tomate, oignon, champignon, frites, sauce cocktail | 1500
+Chawarma frites | choux, frites, piment, ketchup | 1500
+Chawarma kafta viande | laitue, frites, sauce cocktail, viande kafta, piment | 1500
+Chawarma kafta viande + fromage | laitue, frites, sauce cocktail, piment, viande kafta, mozzarella | 2000
+Chawarma double kafta viande | laitue, frites, sauce cocktail, double viande kafta, piment | 2500
+Chawarma double kafta viande + fromage | laitue, frites, sauce cocktail, double viande kafta, piment, mozzarella | 3000
+Chawarma viande steak | laitue, frites, piment, sauce cocktail, viande steak | 2500
+Chawarma viande steak + fromage | laitue, frites, piment, sauce cocktail, viande steak, mozzarella | 3000
+Chawarma viande libanais | persil haché, viande steak, sauce tarator, oignon | 2500
+Chawarma taouk poisson | laitue, frites, crème d'ail, piment, poisson | 3000
+Chawarma taouk poulet | choux, frites, crème d'ail, piment, taouk poulet | 2500
+Chawarma poulet | choux, frites, crème d'ail, piment, poulet | 2500
+Chawarma poulet + fromage | choux, frites, crème d'ail, piment, poulet, fromage | 3000
+Chawarma kafta poulet | choux, frites, crème d'ail, piment, kafta poulet | 2000
+Chawarma double kafta poulet | choux, frites, crème d'ail, piment, double kafta poulet | 3000
+Chawarma kafta poulet + fromage | choux, frites, crème d'ail, piment, kafta poulet, mozzarella | 2500
+Double kafta poulet + fromage | choux, frites, crème d'ail, piment, double kafta poulet, mozzarella | 3500
+Chawarma suggestion du chef (King Food) | laitue, persil, oignon, tomate, frites, poulet, kafta viande, viande steak, sauce cocktail, vinaigrette, cornichon | 4000
+
+// Burgers 1 à 15 : capture d'écran (coupée à droite : prix et fin de composition illisibles à partir du 9e).
+// « Zinger burger » : feuille manuscrite du 24/11. Les deux autres burgers de cette feuille existent déjà dans la liste.
+## Burgers | @Sandwich / Assiette
+Burger végétarien | laitue, tomate, choux, frites, sauce cocktail, champignon, oignon | 2000 / 2500
+Hamburger viande | viande burger, choux, laitue, tomate, frites, sauce cocktail | 3000 / 3500
+Chicken burger | viande chicken, choux, laitue, tomate, frites, sauce cocktail | 3500 / 4000
+Cheese burger | viande burger, choux, frites, laitue, tomate, sauce cocktail, fromage cheddar | 3500 / 4000
+Cheese chicken burger | viande chicken, choux, laitue, tomate, fromage cheddar, sauce cocktail | 4000 / 4500
+Double burger | laitue, tomate, double viande burger, choux, frites, sauce cocktail | 3500 / 4000
+Double chicken burger | laitue, tomate, double viande chicken, choux, frites, sauce cocktail | 4000 / 4500
+Double cheese burger | laitue, tomate, double viande burger, double cheddar, fromage, choux, frites, sauce cocktail | 4500 / 5000
+Double chicken cheese burger | |
+Crispy burger BBQ | laitue, tomate, poulet crispy, choux, frites, sauce cocktail |
+Fish burger | laitue, tomate, fish, choux, frites, sauce cocktail |
+Chilli cheese burger | |
+Burger King Food | |
+Hawaï burger | |
+American burger BBQ | |
 Zinger burger | |
-Double cheese burger | 2 viandes, 2 fromages |
-Hamburger végétarien | aubergine, tomate, oignon, frites, cornichon |
+
+// Feuilles du 26/11. Le mot « Pizza » n'est pas répété devant chaque nom ; « fromage mozzarella » est abrégé en « mozzarella ».
+## Pizzas | @Petite / Grande
+Californienne | crème fraîche, mozzarella, jambon, champignon, olive |
+Crazy Bun's | sauce tomate, jambon, mozzarella, cheddar, jaune d'œuf, champignon |
+Charcutière | crème fraîche, mozzarella, jambon, poulet, tomate fraîche |
+Campione | sauce tomate, mozzarella, champignon, viande hachée, œuf |
+Margherita | sauce tomate, olive noire, origan, mozzarella |
+Mexicaine | viande hachée, sauce tomate, oignon, poivron, maïs doux, mozzarella |
+Country | sauce tomate, mozzarella, cheddar, émincé de poulet, saucisse |
+Classic | sauce tomate, mozzarella, oignon |
+Calzone | sauce tomate, jambon, mozzarella, champignon, œuf, olive |
+Chicken | sauce tomate, poulet, oignon, poivron, mozzarella |
+Angelica | sauce tomate, jambon, poivron, oignon, viande de mouton, mozzarella |
+Capri | sauce tomate, mozzarella, crevette, thon, poisson, ail, persil, citron |
+Chef | sauce tomate, mozzarella, poulet, oignon, œuf |
+Easy Spicy | sauce tomate, piment, poivron, poulet, mozzarella |
+Mixte | deux pizzas mélangées ou demi-saison, au choix |
+Végétarienne | sauce tomate, poivron, oignon, champignon, olive noire, maïs doux, tomate fraîche, artichauts, mozzarella |
+Méditerranée | sauce tomate, crevette, thon, olive noire, champignon, mozzarella |
+Roma | sauce tomate, mozzarella, jambon, champignon, poivron, artichauts |
+4 fromages | sauce tomate, cheddar, mozzarella, gruyère, parmesan |
+Suggestion du chef | crème fraîche, viande de bœuf, olive noire, maïs doux, mozzarella |
+Triskell | sauce tomate, mozzarella, jambon, origan, olive noire, champignon |
+Thonata | sauce tomate, mozzarella, thon, oignon, poivron, olive |
+Miami | boulettes de bœuf, jambon, oignon, sauce tomate, champignon, mozzarella |
+Toscane | sauce tomate, jambon, olive noire, mozzarella |
+Flipper | sauce tomate, artichaut, jambon, champignon, olive noire, mozzarella |
+King Food | crème fraîche, poulet, poivron, oignon, maïs doux, mozzarella |
+Fruits de mer | crème fraîche, poisson, crevette, thon, poivron, olive, oignon |
+Vulcano | sauce tomate, thon, œuf, olive noire, mozzarella |
+DG | crème fraîche, poulet, crevette, thon, poivron, oignon, champignon, olive noire, mozzarella |
+Reine | sauce tomate, mozzarella, jambon, champignon |
+Crevette | sauce tomate, crevette, olive noire, mozzarella |
+Du Roi | sauce tomate, piment, poulet, jambon, mozzarella |
 
 ## Nos pâtes
 Tagliatelles aux fruits de mer | tagliatelles, crevettes, poisson, champignon |
@@ -71,16 +157,6 @@ Brochette de gambas | |
 ## Menu enfants
 Nuggets de poulet | 7 nuggets, sauce cocktail, frites, 1 Coca |
 Quart de poulet grillé + frites | |
-
-## Sandwichs
-Panini caprese | tomates, mozzarella |
-Panini Vénito | poulet, fromage, tomates |
-Panini rôti de bœuf | rôti de bœuf, légumes, sauce maison |
-Bol de frites | |
-Crispy poulet | crispy, choux, crème d'ail, ketchup |
-Steak sub | émincé de bœuf, oignon, champignon, mayonnaise |
-Chicken sub | poulet, oignon, champignon, crème d'ail |
-Sandwich au thon | |
 
 ## Viandes rouges
 Filet de bœuf sauce chasseur | |
@@ -120,3 +196,118 @@ Dakouin du chef | viande de mouton, sauce riche du chef |
 Monyo | poissons frits, sauce monyo, akassa |
 Poissons frits + attiéké | |
 Poulet yassa | poulet mariné au citron, oignons caramélisés |
+
+// Feuilles du 26/11 : desserts et boissons.
+## Crêpes
+Crêpe nature | |
+Crêpe au sucre | |
+Crêpe au chocolat | |
+Crêpe au chocolat et à la banane | |
+Crêpe salée | |
+Crêpe jambon fromage | |
+
+## Gaufres
+Gaufre au sucre | |
+Gaufre au chocolat | |
+Gaufre au chocolat à la banane | |
+Gaufre au miel | |
+Gaufre à la confiture | |
+
+## Gâteaux
+Part de gâteau (petite) | |
+Part de gâteau (grande) | |
+
+## Glaces
+Boule de glace (bol) | |
+Boule de glace (cornet) | |
+Milkshake | |
+Dame blanche | |
+Dame noire | |
+Chocolat frappé | |
+Boules de glace (6) | |
+Boules de glace (10) | |
+
+## Cocktails
+Diablo | pêche, grenadine ou menthe |
+Tonino | ananas, mangue, citron, sirop de pêche, fraise |
+Virgin mojito | feuilles de menthe, citron vert, sucre de canne, Perrier |
+Parisette | lait entier, sirop de menthe ou grenadine |
+Mojito pomme | feuilles de menthe, citron vert, sucre de canne, jus de pomme |
+King Food Exotique | goyave, feuilles de menthe, ananas, sirop de gingembre, jus d'orange, sirop de grenadine |
+L'unique virgin | ananas, passion, sirop de grenadine |
+Chantaco passion | orange, ananas, grenadine, passion |
+Arc-en-ciel | ananas, mangue, pastèque, sirop de menthe |
+Bora Bora | ananas, fruit de la passion, jus de citron, sirop de grenadine |
+Virgin mojito passion | menthe, citron, fruit de la passion, sucre de canne, eau gazeuse |
+Monaco | bière sans alcool, sirop de grenadine, Sprite |
+Cendrillon passion | citron, orange, ananas, fruit de la passion |
+Valse | bière sans alcool, sirop de menthe, 7up |
+Cendrillon | jus de citron, jus d'orange, jus d'ananas, trait de grenadine |
+Hey Baby | ananas, passion, citron, vanille |
+Laluna | ananas, orange, citron |
+Malgache | bissap, ananas, citron, sirop de menthe |
+Chantaco | jus d'orange, citron, sirop de fraise, pamplemousse |
+Smooth Bananas | ananas, banane, miel, lait, vanille |
+Passion Aimant | passion, ananas, orange, miel |
+Pina Hoolala | ananas, banane, lait, citron vert |
+Citron vert | citron, gingembre, miel |
+Milkshake banane | vanille, banane |
+Healthy Drink | jus de carotte, jus d'ananas, jus d'orange, jus de gingembre |
+Smoothie Énergie | avocat, banane, datte, miel, lait |
+Watermelon Cream | pastèque, lait entier, boule de vanille, lait concentré, chantilly |
+Bière sans alcool passion | purée de passion, sirop de passion, jus de citron, sirop de grenadine |
+Healthy Apple Cérélac Smoothie | pomme, Cérélac, lait entier, miel ou caramel |
+Red Tropical Kiss | pastèque macérée au citron, sirop de bissap, jus de citron |
+Cocktail de fruits | pastèque, pomme, ananas, mangue, papaye |
+
+## Jus nature
+Ananas | |
+Orange | |
+Pastèque | |
+Banane | |
+Gingembre | |
+Pomme | |
+Papaye | |
+
+## Jus mixte
+Assiette de fruits | |
+Assiette de raisin | |
+Jus d'avocat | |
+Jus de bissap | |
+Limonade | |
+Eau gazeuse (petite) | |
+Eau gazeuse (grande) | |
+
+## Boissons chaudes
+Café libanais | |
+Thé infusion menthe Lipton | |
+Thé mojito | |
+Lait chaud | |
+Chocolat chaud | |
+Citronnelle | |
+
+## Boissons
+Coca-Cola | |
+Coca Light / Zéro | |
+Youki | cocktail, pamplemousse |
+Pepsi | |
+Pepsi Light | |
+Perrier | |
+Bière sans alcool | |
+Fanta | orange, citron |
+Sprite | |
+Malta | |
+XXL | |
+Extra | |
+Eau (0,5 L) | |
+Eau (1,5 L) | |
+Énergie | |
+Yaourt maison (petit) | |
+Yaourt maison (grand) | |
+Yaourt maison (1 L) | |
+Salade de fruits | | @Grande / Petite
+
+## Chicha
+Chicha | menthe, pomme, menthe-citron, love |
+Chicha spécial | |
+Changement de tête | |
