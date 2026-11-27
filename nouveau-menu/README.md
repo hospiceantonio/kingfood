@@ -16,12 +16,14 @@ Sources reçues du restaurant :
 | Fichier | Rôle |
 |---|---|
 | `KING-FOOD-nouveau-menu-v2-prix-a-completer.pdf` | **Le document à envoyer au restaurant** (6 pages). Pages 1 à 4 : le menu, 25 rubriques et 248 plats ; chaque prix est une case vide à remplir à l'écran (champ de saisie) ou à la main. Pages 5 et 6 : mode d'emploi, corrections déjà faites, 16 points à confirmer et 5 suggestions, avec cases à cocher et lignes de réponse. |
+| `KING-FOOD-nouveau-menu-v2-a-completer.docx` | **La version Word du même document** (A4, 22 pages), plus facile à remplir que le PDF : des tableaux simples où toute case jaune est une case à remplir (un prix, un X ou une réponse). Même contenu, mêmes numéros de plats. |
 | `nouveau-menu.txt` | Le contenu : une ligne par plat, `Nom \| Description \| Prix`. C'est ici qu'on corrige un plat ou qu'on saisit les prix. Les rubriques y sont dans l'ordre de lecture du menu. |
 | `outils/composer.py` | Met en page `nouveau-menu.txt` ; la répartition des rubriques par colonne est dans `PLAN`. |
 | `outils/questions.py` | Le texte des pages 5 et 6. Les numéros de plats cités sont retrouvés par leur nom. |
 | `outils/mesurer.js` | Mesure la hauteur de chaque rubrique, pour répartir les colonnes dans `PLAN`. |
 | `outils/rendre.js` | Rend la page en PDF et refuse une colonne qui déborde. |
 | `outils/champs.py` | Pose un champ de saisie sur chaque case : prix, réponses, cases à cocher. |
+| `outils/word.py`, `outils/word.js` | Version Word : `word.py` prépare le contenu (menu et questions) en JSON, `word.js` fabrique le `.docx` avec la bibliothèque `docx`. |
 | `polices-menu.css` | Polices embarquées (Amatic SC, Cabin, Sacramento, Montserrat — licence OFL). |
 
 ## Régénérer le PDF
@@ -32,6 +34,19 @@ python3 outils/composer.py     # --sans-questions : le menu seul (4 pages)
 node outils/rendre.js menu-a-completer.html brouillon.pdf champs.json
 python3 outils/champs.py brouillon.pdf champs.json KING-FOOD-nouveau-menu-v2-prix-a-completer.pdf
 ```
+
+## Régénérer le document Word
+
+```
+npm install -g docx            # si la bibliothèque n'est pas déjà installée
+(cd outils && python3 word.py ../word-modele.json)
+node outils/word.js word-modele.json KING-FOOD-nouveau-menu-v2-a-completer.docx
+```
+
+Le restaurant remplit les cases jaunes dans Word (ordinateur ou téléphone), ou à la main après
+impression. Les cases sont de simples cellules de tableau vides, sans champ de formulaire.
+
+## Répartition des colonnes du PDF
 
 Après avoir ajouté ou retiré des plats, vérifier la répartition :
 
